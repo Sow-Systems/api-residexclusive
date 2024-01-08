@@ -1,0 +1,58 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "deepLinking": false,
+    "description": "Documentação da API do Sistema Resid",
+    "version": "1.0.0",
+    "title": "API Sistema Resid",
+    "contact": {
+      "email": "danilosalys.developer@gmail.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:4000/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Users",
+      "description": "Métodos referentes ao cadastro de Usuários do sistema"
+    },
+    {
+      "name": "Projects",
+      "description": "Métodos referentes ao cadastro de Obras do sistema"
+    }
+  ],
+  "paths": {
+    "/teste-deploy": {
+      "get": {
+        "tags": [
+          "Generic"
+        ],
+        "description": "Endpoint testar o servidor Express para deploy.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  }
+}
