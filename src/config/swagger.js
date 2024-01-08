@@ -2,6 +2,7 @@ const swaggerAutogen = require("swagger-autogen")({ openapi: "3.0.0" });
 
 const outputFile = "../../swagger.json";
 const endpointFiles = ["../routes/*.js"];
+require("dotenv").config();
 
 const doc = {
 	info: {
@@ -13,7 +14,7 @@ const doc = {
 			email: "danilosalys.developer@gmail.com",
 		},
 	},
-	host: "localhost:4000",
+	host: process.env.BASE_URL,
 	tags: [
 		{
 			name: "Users",
