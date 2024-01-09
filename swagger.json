@@ -60,25 +60,9 @@
             "bearerAuth": []
           }
         ]
-      },
-      "post": {
-        "tags": [
-          "Projects"
-        ],
-        "description": "Endpoint para cadastrar uma obra no sistema",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
       }
     },
-    "/projects/{id}": {
+    "/project/{id}": {
       "get": {
         "tags": [
           "Projects"
@@ -112,7 +96,7 @@
         ]
       }
     },
-    "/projects/name/{name}": {
+    "/project/name/{name}": {
       "get": {
         "tags": [
           "Projects"
@@ -134,6 +118,24 @@
           },
           "500": {
             "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/project": {
+      "post": {
+        "tags": [
+          "Projects"
+        ],
+        "description": "Endpoint para cadastrar uma obra no sistema",
+        "responses": {
+          "default": {
+            "description": ""
           }
         },
         "security": [

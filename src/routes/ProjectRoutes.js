@@ -12,8 +12,8 @@ const auth = require("../middlewares/Auth");
 const router = express.Router();
 
 router.get("/projects", getAllProjects);
-router.get("/projects/:id", getProjectById);
-router.get("/projects/name/:name", getProjectByName);
-router.post("/projects", createProject);
+router.get("/project/:id", getProjectById);
+router.get("/project/name/:name", getProjectByName);
+router.post("/project", createProject);
 
 module.exports = router;
