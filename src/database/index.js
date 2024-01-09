@@ -37,7 +37,7 @@ db.addHook("beforeSave", (instance) => {
 async function hasConnection() {
 	try {
 		await db.authenticate();
-		console.log("Banco dados conectado com Sequelize!");
+		console.log(`Banco dados ${process.env.NODE_ENV} conectado com Sequelize!`);
 	} catch (error) {
 		console.error("Erro ao tentar se conectar ao banco de dados");
 	}

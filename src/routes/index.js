@@ -1,3 +1,4 @@
 const genericRoute = require("./genericRoute");
+const userRoutes = require("./userRoutes");
 
-module.exports = { genericRoute };
+module.exports = { genericRoute, userRoutes };
