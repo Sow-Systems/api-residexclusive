@@ -26,12 +26,12 @@ module.exports = UserController = {
 		}
 	},
 
-	getUserByID: async (req, res) => {
+	getUserById: async (req, res) => {
 		// #swagger.tags = ['Users']
 		// #swagger.description = 'Endpoint para listar um usuário pelo ID'
 		/* #swagger.security = [{
             "bearerAuth": []
-    }] */
+    		}] */
 		try {
 			const { id } = req.params;
 			const user = await userService.getUserById(id);
@@ -50,7 +50,7 @@ module.exports = UserController = {
 		// #swagger.description = 'Endpoint para listar todas os usuários cadastrados.'
 		/* #swagger.security = [{
             "bearerAuth": []
-    }] */
+    		}] */
 		try {
 			const users = await userService.getAllUsers();
 			res.status(200).json(users);

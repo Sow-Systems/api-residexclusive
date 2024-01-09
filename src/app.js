@@ -13,6 +13,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use(routes.userRoutes);
+app.use(routes.projectRoutes);
 
 db.hasConnection();
 
