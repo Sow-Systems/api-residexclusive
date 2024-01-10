@@ -25,27 +25,6 @@
     }
   ],
   "paths": {
-    "/teste-deploy": {
-      "get": {
-        "tags": [
-          "Generic"
-        ],
-        "description": "Endpoint testar o servidor Express para deploy.",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
-      }
-    },
     "/projects": {
       "get": {
         "tags": [
