@@ -37,7 +37,7 @@ const User = db.define(
 		},
 	},
 	{
-		tableName: "user", // Nome da tabela no banco de dados
+		tableName: "user",
 		timestamps: true,
 		underscored: true,
 	}
