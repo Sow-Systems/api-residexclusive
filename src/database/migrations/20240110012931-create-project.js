@@ -16,10 +16,6 @@ module.exports = {
 			add_id: {
 				type: Sequelize.INTEGER,
 				allowNull: true,
-				references: {
-					model: "address",
-					key: "add_id",
-				},
 			},
 			prj_name: {
 				type: Sequelize.STRING,

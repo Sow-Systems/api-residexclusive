@@ -9,6 +9,11 @@
       "email": "danilosalys.developer@gmail.com"
     }
   },
+  "servers": [
+    {
+      "url": "http://localhost:4000/"
+    }
+  ],
   "tags": [
     {
       "name": "Users",
@@ -134,15 +139,80 @@
         ],
         "description": "Endpoint para cadastrar uma obra no sistema",
         "responses": {
-          "default": {
-            "description": ""
+          "201": {
+            "description": "Created"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         },
         "security": [
           {
             "bearerAuth": []
           }
-        ]
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "cus_id": {
+                    "example": "any"
+                  },
+                  "prj_name": {
+                    "example": "any"
+                  },
+                  "prj_description": {
+                    "example": "any"
+                  },
+                  "prj_start_date": {
+                    "example": "any"
+                  },
+                  "prj_end_date": {
+                    "example": "any"
+                  },
+                  "prj_status": {
+                    "example": "any"
+                  },
+                  "prj_address": {
+                    "example": "any"
+                  },
+                  "prj_category": {
+                    "example": "any"
+                  },
+                  "prj_area": {
+                    "example": "any"
+                  },
+                  "prj_cno": {
+                    "example": "any"
+                  },
+                  "prj_art": {
+                    "example": "any"
+                  },
+                  "prj_technical_lead_name": {
+                    "example": "any"
+                  },
+                  "prj_architect_name": {
+                    "example": "any"
+                  },
+                  "prj_contract_value": {
+                    "example": "any"
+                  },
+                  "usr_id": {
+                    "example": "any"
+                  },
+                  "usr_name": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/login": {

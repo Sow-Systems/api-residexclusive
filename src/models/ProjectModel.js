@@ -1,6 +1,7 @@
 const { DataTypes } = require("sequelize");
 const db = require("../database");
 const Address = require("./AddressModel");
+const Customer = require("./CustomerModel");
 
 const Project = db.define(
 	"Project",
@@ -18,10 +19,6 @@ const Project = db.define(
 		add_id: {
 			type: DataTypes.INTEGER,
 			allowNull: true,
-			references: {
-				model: Address,
-				key: "add_id",
-			},
 		},
 		prj_name: {
 			type: DataTypes.STRING,
@@ -90,7 +87,11 @@ const Project = db.define(
 Project.belongsTo(Address, {
 	foreignKey: "add_id",
 	as: "address",
-	constraints: false,
+});
+
+Project.belongsTo(Customer, {
+	foreignKey: "cus_id",
+	as: "customer",
 });
 
 module.exports = Project;

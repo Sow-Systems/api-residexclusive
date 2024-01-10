@@ -40,10 +40,10 @@ module.exports = ProjectController = {
 		/* #swagger.security = [{
             "bearerAuth": []
     		}] */
-		const { prj_name } = req.params;
+		const { name } = req.params;
 
 		try {
-			const project = await projectService.getAllByName(prj_name);
+			const project = await projectService.getProjectByName(name);
 			res.status(200).json(project);
 		} catch (error) {
 			res.status(500).json({ error: error.message });
@@ -52,7 +52,7 @@ module.exports = ProjectController = {
 
 	createProject: async (req, res) => {
 		// #swagger.tags = ['Projects']
-		// #swagger.description = 'Endpoint para cadastrar uma obra no sistema
+		// #swagger.description = 'Endpoint para cadastrar uma obra no sistema'
 		/* #swagger.security = [{
             "bearerAuth": []
     }] */

@@ -23,9 +23,12 @@ module.exports = {
 		}
 	},
 
-	getProjectByName: async (prj_name) => {
+	getProjectByName: async (name) => {
 		try {
-			const project = await Project.findOne({ where: { prj_name: prj_name } });
+			if (!name) {
+				throw new Error("Nome do projeto não especificado.");
+			}
+			const project = await Project.findOne({ where: { prj_name: name } });
 			return project;
 		} catch (error) {
 			throw new Error(
