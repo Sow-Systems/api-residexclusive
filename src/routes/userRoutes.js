@@ -5,8 +5,8 @@ const {
 	getUsers,
 	getUserById,
 } = require("../controllers/UserController");
-const auth = require("../middlewares/Auth");
 const UserValidations = require("../validations/UserValidations");
+const auth = require("../middlewares/Auth");
 
 const router = express.Router();
 
