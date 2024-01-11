@@ -38,7 +38,7 @@ const VwProject = db.define(
 		},
 	},
 	{
-		tableName: "vw_project_info",
+		tableName: "vw_projects_info",
 		timestamps: false,
 	}
 );
