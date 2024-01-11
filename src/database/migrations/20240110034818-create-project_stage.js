@@ -12,22 +12,10 @@ module.exports = {
 			prj_id: {
 				type: Sequelize.INTEGER,
 				allowNull: false,
-				references: {
-					model: "project",
-					key: "prj_id",
-				},
-				onDelete: "CASCADE",
-				onUpdate: "CASCADE",
 			},
 			stg_id: {
 				type: Sequelize.INTEGER,
 				allowNull: false,
-				references: {
-					model: "stage",
-					key: "stg_id",
-				},
-				onDelete: "CASCADE",
-				onUpdate: "CASCADE",
 			},
 			created_at: {
 				type: Sequelize.DATE,

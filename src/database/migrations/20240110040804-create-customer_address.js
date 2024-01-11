@@ -16,22 +16,10 @@ module.exports = {
 			cus_id: {
 				type: Sequelize.INTEGER,
 				allowNull: false,
-				references: {
-					model: "customer",
-					key: "cus_id",
-				},
-				onDelete: "CASCADE",
-				onUpdate: "CASCADE",
 			},
 			add_id: {
 				type: Sequelize.INTEGER,
 				allowNull: false,
-				references: {
-					model: "address",
-					key: "add_id",
-				},
-				onDelete: "CASCADE",
-				onUpdate: "CASCADE",
 			},
 			usr_id: {
 				type: Sequelize.INTEGER,
