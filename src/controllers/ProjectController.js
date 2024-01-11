@@ -147,9 +147,11 @@ const ProjectController = {
 				usr_name: userName,
 			});
 
+			const idProject = newProject.prj_id;
+
 			res
 				.status(201)
-				.json({ message: "Obra cadastrada com sucesso!", newProject });
+				.json({ message: "Obra cadastrada com sucesso!", idProject });
 		} catch (error) {
 			res.status(500).json({ error: error.message });
 		}
