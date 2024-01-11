@@ -1,6 +1,6 @@
-const userService = require("../services/UserService");
+const UserService = require("../services/UserService");
 
-module.exports = UserController = {
+const UserController = {
 	login: async (req, res) => {
 		// #swagger.tags = ['Users']
 		// #swagger.description = 'Endpoint para o usuario efetuar o login no sistema'
@@ -10,16 +10,16 @@ module.exports = UserController = {
 			if (!username) {
 				return res.status(404).send("Usuário não informado");
 			}
-			const user = await userService.getUserByUsername(username);
+			const user = await UserService.getUserByUsername(username);
 
 			if (!user) {
 				return res.status(404).send("Usuário não encontrado");
 			}
 
-			if (!userService.checkPassword(password, user.usr_password)) {
+			if (!UserService.checkPassword(password, user.usr_password)) {
 				return res.status(401).send("Credenciais inválidas");
 			}
-			let token = userService.getToken(username);
+			let token = UserService.getToken(username);
 			return res.status(200).json({ token });
 		} catch (error) {
 			res.status(500).json({ error: error.message });
@@ -34,7 +34,7 @@ module.exports = UserController = {
     		}] */
 		try {
 			const { id } = req.params;
-			const user = await userService.getUserById(id);
+			const user = await UserService.getUserById(id);
 
 			if (!user) {
 				return res.status(404).json({ error: "Usuario nao encontrado" });
@@ -52,7 +52,7 @@ module.exports = UserController = {
             "bearerAuth": []
     		}] */
 		try {
-			const users = await userService.getAllUsers();
+			const users = await UserService.getAllUsers();
 			res.status(200).json(users);
 		} catch (error) {
 			res.status(500).json({ error: error.message });
@@ -67,8 +67,8 @@ module.exports = UserController = {
     }] */
 		try {
 			const { username, name, email, password, birthdate } = req.body;
-			const checkUsername = await userService.getUserByUsername(username);
-			const checkEmail = await userService.getUserByEmail(email);
+			const checkUsername = await UserService.getUserByUsername(username);
+			const checkEmail = await UserService.getUserByEmail(email);
 			if (checkUsername) {
 				return res
 					.status(409)
@@ -80,7 +80,7 @@ module.exports = UserController = {
 					.status(409)
 					.json({ error: "Email ja cadastrado no sistema" });
 			}
-			const newUser = await userService.createUser(
+			const newUser = await UserService.createUser(
 				username,
 				name,
 				email,
@@ -97,3 +97,5 @@ module.exports = UserController = {
 		}
 	},
 };
+
+module.exports = UserController;

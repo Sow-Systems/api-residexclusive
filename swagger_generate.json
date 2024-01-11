@@ -46,7 +46,7 @@
         ]
       }
     },
-    "/project/{id}": {
+    "/projects/{id}": {
       "get": {
         "tags": [
           "Projects"
@@ -62,6 +62,30 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/projects-info": {
+      "get": {
+        "tags": [
+          "Projects"
+        ],
+        "description": "Endpoint para listar as obras na pagina inicial do menu de Obras",
         "responses": {
           "200": {
             "description": "OK"
@@ -99,6 +123,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -138,53 +165,47 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "properties": {
-                  "cus_id": {
+                "properties": {                
+                  "projectName": {
                     "example": "any"
                   },
-                  "prj_name": {
+                  "description": {
                     "example": "any"
                   },
-                  "prj_description": {
+                  "startDate": {
                     "example": "any"
                   },
-                  "prj_start_date": {
+                  "endDate": {
                     "example": "any"
                   },
-                  "prj_end_date": {
+                  "status": {
                     "example": "any"
                   },
-                  "prj_status": {
+                  "category": {
                     "example": "any"
                   },
-                  "prj_address": {
+                  "area": {
                     "example": "any"
                   },
-                  "prj_category": {
+                  "cno": {
                     "example": "any"
                   },
-                  "prj_area": {
+                  "art": {
                     "example": "any"
                   },
-                  "prj_cno": {
+                  "technicalLeadName": {
                     "example": "any"
                   },
-                  "prj_art": {
+                  "architectName": {
                     "example": "any"
                   },
-                  "prj_technical_lead_name": {
+                  "contractValue": {
                     "example": "any"
                   },
-                  "prj_architect_name": {
+                  "userId": {
                     "example": "any"
                   },
-                  "prj_contract_value": {
-                    "example": "any"
-                  },
-                  "usr_id": {
-                    "example": "any"
-                  },
-                  "usr_name": {
+                  "userName": {
                     "example": "any"
                   }
                 }

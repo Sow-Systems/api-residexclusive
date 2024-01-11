@@ -1,4 +1,5 @@
 const Project = require("../models/ProjectModel");
+const VwProjectInfo = require("../models/VwProjectInfoModel");
 
 module.exports = {
 	getAllProjects: async () => {
@@ -8,6 +9,17 @@ module.exports = {
 		} catch (error) {
 			throw new Error(
 				`Erro ao obter as obras no banco de dados: ${error.message}`
+			);
+		}
+	},
+
+	getProjectInfo: async () => {
+		try {
+			const projects = await VwProjectInfo.findAll();
+			return projects;
+		} catch (error) {
+			throw new Error(
+				`Erro ao obter a obra no banco de dados: ${error.message}`
 			);
 		}
 	},
@@ -37,46 +49,31 @@ module.exports = {
 		}
 	},
 
-	createProject: async ({
-		cus_id,
-		prj_name,
-		prj_description,
-		prj_start_date,
-		prj_end_date,
-		prj_status,
-		prj_address,
-		prj_category,
-		prj_area,
-		prj_cno,
-		prj_art,
-		prj_technical_lead_name,
-		prj_architect_name,
-		prj_contract_value,
-		usr_id,
-		usr_name,
-	}) => {
+	createProject: async (projectData) => {
 		try {
-			const newProject = await Project.create({
-				cus_id,
-				prj_name,
-				prj_description,
-				prj_start_date,
-				prj_end_date,
-				prj_status,
-				prj_address,
-				prj_category,
-				prj_area,
-				prj_cno,
-				prj_art,
-				prj_technical_lead_name,
-				prj_architect_name,
-				prj_contract_value,
-				usr_id,
-				usr_name,
-			});
+			const newProject = await Project.create(projectData);
 			return newProject;
 		} catch (error) {
 			throw new Error(`Erro ao criar a obra: ${error.message}`);
+		}
+	},
+
+	updateProjectById: async (projectId, updatedProjectData) => {
+		try {
+			const existingProject = await Project.findByPk(projectId);
+
+			if (!existingProject) {
+				throw new Error("Obra não encontrada");
+			}
+
+			await Project.update(updatedProjectData, {
+				where: { prj_id: projectId },
+			});
+
+			const updatedProject = await Project.findByPk(projectId);
+			return updatedProject;
+		} catch (error) {
+			throw new Error(`Erro ao atualizar o projeto: ${error.message}`);
 		}
 	},
 };

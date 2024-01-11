@@ -30,7 +30,7 @@ module.exports = {
 				allowNull: true,
 			},
 			cus_cpf: {
-				type: Sequelize.STRING(10),
+				type: Sequelize.STRING(20),
 				allowNull: true,
 			},
 			cus_cnpj: {
@@ -52,10 +52,14 @@ module.exports = {
 			created_at: {
 				type: Sequelize.DATE,
 				allowNull: false,
+				defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
 			},
 			updated_at: {
 				type: Sequelize.DATE,
 				allowNull: false,
+				defaultValue: Sequelize.literal(
+					"CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+				),
 			},
 		});
 	},

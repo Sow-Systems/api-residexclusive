@@ -11,7 +11,7 @@ const Stage = db.define(
 			primaryKey: true,
 		},
 		stg_name: {
-			type: DataTypes.STRING(45),
+			type: DataTypes.STRING(100),
 			allowNull: false,
 		},
 		usr_id: {
