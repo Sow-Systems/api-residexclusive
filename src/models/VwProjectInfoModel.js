@@ -37,7 +37,7 @@ const VwProject = db.define(
 		},
 		stg_name: {
 			type: DataTypes.STRING,
-			defaultValue: "Definir Tabela do diário de Obras",
+			defaultValue: "Definir Tabela do diário de Obras...",
 		},
 	},
 	{
