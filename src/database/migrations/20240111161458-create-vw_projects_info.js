@@ -3,9 +3,10 @@
 module.exports = {
 	up: async (queryInterface) => {
 		const createViewQuery = `
-      CREATE VIEW vw_projects_info AS
+      CREATE or REPLACE VIEW vw_projects_info AS
       SELECT prj.prj_id
 	          ,cus.cus_id
+            ,cus.cus_name
             ,prj.prj_name
             ,prj.prj_start_date
             ,prj.prj_end_date

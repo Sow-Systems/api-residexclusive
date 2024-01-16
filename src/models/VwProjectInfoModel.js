@@ -11,6 +11,9 @@ const VwProject = db.define(
 		cus_id: {
 			type: DataTypes.INTEGER,
 		},
+		cus_name: {
+			type: DataTypes.STRING,
+		},
 		prj_name: {
 			type: DataTypes.STRING,
 		},
@@ -34,7 +37,7 @@ const VwProject = db.define(
 		},
 		stg_name: {
 			type: DataTypes.STRING,
-			defaultValue: "Definir Tabela do diário de Obras",
+			defaultValue: "Definir Tabela do diário de Obras...",
 		},
 	},
 	{
