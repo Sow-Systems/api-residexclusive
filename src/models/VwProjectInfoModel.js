@@ -11,6 +11,9 @@ const VwProject = db.define(
 		cus_id: {
 			type: DataTypes.INTEGER,
 		},
+		cus_name: {
+			type: DataTypes.STRING,
+		},
 		prj_name: {
 			type: DataTypes.STRING,
 		},
