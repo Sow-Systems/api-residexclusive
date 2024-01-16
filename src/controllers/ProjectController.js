@@ -13,11 +13,11 @@ const ProjectController = {
 			const project = await ProjectService.getProjectById(id);
 
 			if (!project) {
-				return res.status(404).json({ error: "Obra não encontrada" });
+				return res.status(404).json({ message: "Obra não encontrada" });
 			}
 			return res.status(200).json(project);
 		} catch (error) {
-			return res.status(500).json({ error: error.message });
+			return res.status(500).json({ message: error.message });
 		}
 	},
 
@@ -32,11 +32,11 @@ const ProjectController = {
 			if (!project) {
 				return res
 					.status(404)
-					.json({ error: "Não há obras cadastradas no sistema" });
+					.json({ message: "Não há obras cadastradas no sistema" });
 			}
 			return res.status(200).json(project);
 		} catch (error) {
-			return res.status(500).json({ error: error.message });
+			return res.status(500).json({ message: error.message });
 		}
 	},
 
@@ -51,11 +51,11 @@ const ProjectController = {
 			if (!projects) {
 				return res
 					.status(404)
-					.json({ error: "Nao ha obras cadastradas no sistema" });
+					.json({ message: "Nao ha obras cadastradas no sistema" });
 			}
 			res.status(200).json(projects);
 		} catch (error) {
-			res.status(500).json({ error: error.message });
+			res.status(500).json({ message: error.message });
 		}
 	},
 
@@ -76,7 +76,7 @@ const ProjectController = {
 			}
 			res.status(200).json(project);
 		} catch (error) {
-			res.status(500).json({ error: error.message });
+			res.status(500).json({ message: error.message });
 		}
 	},
 
@@ -114,7 +114,7 @@ const ProjectController = {
 			if (existingProject) {
 				return res
 					.status(409)
-					.json({ error: "A obra já esta cadastrada no sistema" });
+					.json({ message: "A obra já esta cadastrada no sistema" });
 			}
 
 			const newAddress = await AddressService.createAddress({
@@ -153,7 +153,7 @@ const ProjectController = {
 				.status(201)
 				.json({ message: "Obra cadastrada com sucesso!", idProject });
 		} catch (error) {
-			res.status(500).json({ error: error.message });
+			res.status(500).json({ message: error.message });
 		}
 	},
 
@@ -168,7 +168,7 @@ const ProjectController = {
 			const existingProject = await ProjectService.getProjectById(id);
 
 			if (!existingProject) {
-				return res.status(404).json({ error: "Obra não encontrada" });
+				return res.status(404).json({ message: "Obra não encontrada" });
 			}
 
 			const {
@@ -211,7 +211,45 @@ const ProjectController = {
 				.status(200)
 				.json({ message: "Obra atualizada com sucesso!", updatedProject });
 		} catch (error) {
-			res.status(500).json({ error: error.message });
+			res.status(500).json({ message: error.message });
+		}
+	},
+
+	getProjectStage: async (req, res) => {
+		// #swagger.tags = ['Projects']
+		// #swagger.description = 'Endpoint para obter as etapas de uma obra'
+		/* #swagger.security = [{
+        "bearerAuth": []
+    }] */
+		try {
+			return res.status(200).json({ message: "em desenvolvimento" });
+		} catch (error) {
+			res.status(500).json({ message: error.message });
+		}
+	},
+
+	createProjectStage: async (req, res) => {
+		// #swagger.tags = ['Projects']
+		// #swagger.description = 'Endpoint para adicionar etapas a uma obra'
+		/* #swagger.security = [{
+        "bearerAuth": []
+    }] */
+		try {
+			return res.status(200).json({ message: "em desenvolvimento" });
+		} catch (error) {
+			res.status(500).json({ message: error.message });
+		}
+	},
+	deleteProjectStage: async (req, res) => {
+		// #swagger.tags = ['Projects']
+		// #swagger.description = 'Endpoint para excluir etapas de uma obra'
+		/* #swagger.security = [{
+        "bearerAuth": []
+    }] */
+		try {
+			return res.status(200).json({ message: "em desenvolvimento" });
+		} catch (error) {
+			res.status(500).json({ message: error.message });
 		}
 	},
 };
