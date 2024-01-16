@@ -8,21 +8,21 @@ const UserController = {
 			const { username, password } = req.body;
 
 			if (!username) {
-				return res.status(404).send("Usuário não informado");
+				return res.status(404).send({ message: "Usuário não informado" });
 			}
 			const user = await UserService.getUserByUsername(username);
 
 			if (!user) {
-				return res.status(404).send("Usuário não encontrado");
+				return res.status(404).send({ message: "Usuário não encontrado" });
 			}
 
 			if (!UserService.checkPassword(password, user.usr_password)) {
-				return res.status(401).send("Credenciais inválidas");
+				return res.status(401).send({ message: "Credenciais inválidas" });
 			}
 			let token = UserService.getToken(username);
 			return res.status(200).json({ token });
 		} catch (error) {
-			res.status(500).json({ error: error.message });
+			res.status(500).json({ message: error.message });
 		}
 	},
 
@@ -37,11 +37,11 @@ const UserController = {
 			const user = await UserService.getUserById(id);
 
 			if (!user) {
-				return res.status(404).json({ error: "Usuario nao encontrado" });
+				return res.status(404).json({ message: "Usuario nao encontrado" });
 			}
 			return res.status(200).json(user);
 		} catch (error) {
-			return res.status(500).json({ error: error.message });
+			return res.status(500).json({ message: error.message });
 		}
 	},
 
@@ -55,7 +55,7 @@ const UserController = {
 			const users = await UserService.getAllUsers();
 			res.status(200).json(users);
 		} catch (error) {
-			res.status(500).json({ error: error.message });
+			res.status(500).json({ message: error.message });
 		}
 	},
 
@@ -78,7 +78,7 @@ const UserController = {
 			if (checkEmail) {
 				return res
 					.status(409)
-					.json({ error: "Email ja cadastrado no sistema" });
+					.json({ message: "Email ja cadastrado no sistema" });
 			}
 			const newUser = await UserService.createUser(
 				username,
@@ -92,7 +92,7 @@ const UserController = {
 				.json({ message: "Usuario criado: Id: " + newUser.usr_id });
 		} catch (error) {
 			return res.status(500).json({
-				error: "Erro ao inserir o usuario no sistema",
+				message: "Erro ao inserir o usuario no sistema",
 			});
 		}
 	},
