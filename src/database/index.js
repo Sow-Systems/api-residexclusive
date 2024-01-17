@@ -1,20 +1,36 @@
 require("dotenv").config();
 const Sequelize = require("sequelize");
 
-const DB_NAME = process.env.DB_NAME;
-const DB_USER = process.env.DB_USER;
-const DB_PASS = process.env.DB_PASSWORD;
+const DB_NAME =
+	process.env.NODE_ENV === "production"
+		? process.env.DB_NAME
+		: process.env.DB_NAME_DEV;
+const DB_USER =
+	process.env.NODE_ENV === "production"
+		? process.env.DB_USER
+		: process.env.DB_USER_DEV;
+const DB_PASS =
+	process.env.NODE_ENV === "production"
+		? process.env.DB_PASSWORD
+		: process.env.DB_PASSWORD_DEV;
 const DB_CONFIG = {
-	dialect: process.env.DB_DIALECT,
+	dialect:
+		process.env.NODE_ENV === "production"
+			? process.env.DB_DIALECT
+			: process.env.DB_DIALECT_DEV,
 	dialectOptions: {
 		ssl: { rejectUnauthorized: false },
 	},
-	host: process.env.DB_HOST,
-	//port: process.env.DB_PORT,
-	timezone: "-03:00",
+	host:
+		process.env.NODE_ENV === "production"
+			? process.env.DB_HOST
+			: process.env.DB_HOST_DEV,
+	timezone:
+		process.env.NODE_ENV === "production"
+			? process.env.DB_TIMEZONE
+			: process.env.DB_TIMEZONE_DEV,
 };
 
-// objeto para guardar a conexão do banco dados
 let db = {};
 
 try {

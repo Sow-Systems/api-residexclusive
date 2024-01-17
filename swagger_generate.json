@@ -165,48 +165,97 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "properties": {                
+                "properties": {                  
                   "projectName": {
-                    "example": "any"
-                  },
-                  "description": {
-                    "example": "any"
+                    "type": "string",
+                    "example": "Obra Versailes"
                   },
                   "startDate": {
-                    "example": "any"
+                    "type": "string",
+                    "format": "date",
+                    "example": "2024-01-10"
                   },
                   "endDate": {
-                    "example": "any"
+                    "type": "string",
+                    "format": "date",
+                    "example": "2025-01-20"
                   },
                   "status": {
-                    "example": "any"
+                    "type": "string",
+                    "example": "Em andamento"
                   },
                   "category": {
-                    "example": "any"
+                    "type": "string",
+                    "example": "Medio porte"
                   },
                   "area": {
-                    "example": "any"
+                    "type": "decimal",
+                    "example": 150.5
                   },
                   "cno": {
-                    "example": "any"
-                  },
-                  "art": {
-                    "example": "any"
+                    "type": "string",
+                    "example": "CNO123"
                   },
                   "technicalLeadName": {
-                    "example": "any"
+                    "type": "string",
+                    "example": "Monkey D Luffy"
                   },
+                  "art": {
+                    "type": "string",
+                    "example": "ART456"
+                  },                 
                   "architectName": {
-                    "example": "any"
+                    "type": "string",
+                    "example": "Nico Robin"
+                  },
+                  "rrt": {
+                    "type": "string",
+                    "example": "1234687954"
+                  },
+                  "foremanName": {
+                    "type": "string",
+                    "example": "Jose da Silva"
                   },
                   "contractValue": {
-                    "example": "any"
+                    "type": "number",
+                    "example": 1000000
                   },
-                  "userId": {
-                    "example": "any"
+                  "contractType": {
+                    "type": "string",
+                    "example": "Prestacao Servico"
                   },
-                  "userName": {
-                    "example": "any"
+                  "observations": {
+                    "type": "string",
+                    "example": "Tipos de contrato: Mao de Obra - Administracao - Global"
+                  },
+                  "address": {
+                    "type": "object",
+                    "properties": {
+                      "street": {
+                        "type": "string",
+                        "example": "Rua Marineford"
+                      },
+                      "number": {
+                        "type": "number",
+                        "example": 44
+                      },
+                      "complement": {
+                        "type": "string",
+                        "example": "Quadra 50 Lote 85"
+                      },
+                      "neighborhood": {
+                        "type": "string",
+                        "example": "Udon"
+                      },
+                      "postalCode": {
+                        "type": "number",
+                        "example": 14095050
+                      },
+                      "city": {
+                        "type": "string",
+                        "example": "Log Town"
+                      }
+                    }
                   }
                 }
               }

@@ -4,35 +4,37 @@ const ProjectValidations = require("../validations/ProjectValidations");
 const auth = require("../middlewares/Auth");
 
 const router = express.Router();
-
-router.get("/projects", auth, ProjectController.getAllProjects);
+router.use(auth);
+router.get("/projects", ProjectController.getAllProjects);
 router.get(
 	"/project/:id",
-	auth,
 	ProjectValidations.getProjectById,
 	ProjectController.getProjectById
 );
 router.get("/projects-info", ProjectController.getProjectsInfo);
 router.get(
 	"/project/name/:name",
-	auth,
 	ProjectValidations.getProjectByName,
 	ProjectController.getProjectByName
 );
 router.post(
 	"/project",
-	auth,
 	ProjectValidations.createProject,
 	ProjectController.createProject
 );
-
-router.get("/project/stage", auth, ProjectController.getProjectStage);
-router.post("/project/stage", auth, ProjectController.createProjectStage);
-router.delete("/project/stage", auth, ProjectController.deleteProjectStage);
+router.put(
+	"/project",
+	ProjectValidations.updateProject,
+	ProjectController.updateProject
+);
 
 // router.get("/project/customer", ProjectController.getProjectCustomer);
-// router.post("/project/customer", auth, ProjectController.createProjectCustomer);
+//router.post("/project/customer", ProjectController.createProjectCustomer);
 // router.put("/project/customer", auth, ProjectController.createProjectCustomer);
 // router.delete("/project/customer", auth, ProjectController.deleteProjectCustomer);
+
+// router.get("/project/stage", ProjectController.getProjectStage);
+// router.post("/project/stage", auth, ProjectController.createProjectStage);
+// router.delete("/project/stage", auth, ProjectController.deleteProjectStage);
 
 module.exports = router;
