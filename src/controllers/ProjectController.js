@@ -1,5 +1,6 @@
-const AddressService = require("../services/AddressService"); // Importe o serviço de endereço aqui
+const AddressService = require("../services/AddressService");
 const ProjectService = require("../services/ProjectService");
+const UserService = require("../services/UserService");
 
 const ProjectController = {
 	getProjectById: async (req, res) => {
@@ -8,7 +9,6 @@ const ProjectController = {
 		/* #swagger.security = [{
             "bearerAuth": []
     }] */
-		console.log(req);
 		try {
 			const { id } = req.params;
 			const project = await ProjectService.getProjectById(id);
@@ -65,7 +65,7 @@ const ProjectController = {
 		// #swagger.description = 'Endpoint para procurar uma obra pelo nome.'
 		/* #swagger.security = [{
             "bearerAuth": []
-    		}] */
+    	}] */
 		const { name } = req.params;
 
 		try {
@@ -87,7 +87,10 @@ const ProjectController = {
 		/* #swagger.security = [{
             "bearerAuth": []
     }] */
+
 		try {
+			const token = req.headers.authorization?.split(" ")[1];
+			const user = await UserService.getUserInToken(token);
 			const {
 				projectName,
 				startDate,
@@ -127,8 +130,8 @@ const ProjectController = {
 				add_city: addressData.city,
 				add_state: addressData.state,
 				add_postal_code: addressData.postalCode,
-				usr_id: "1",
-				usr_name: "admin",
+				usr_id: user.id,
+				usr_name: user.username,
 			});
 
 			const newProject = await ProjectService.createProject({
@@ -148,8 +151,8 @@ const ProjectController = {
 				prj_contract_type: contractType,
 				prj_observations: observations,
 				prj_contract_value: contractValue,
-				usr_id: "1",
-				usr_name: "admin",
+				usr_id: user.id,
+				usr_name: user.username,
 			});
 
 			const idProject = newProject.prj_id;
@@ -169,47 +172,52 @@ const ProjectController = {
         "bearerAuth": []
     }] */
 		try {
-			const { id } = req.params;
+			const token = req.headers.authorization?.split(" ")[1];
+			const user = await UserService.getUserInToken(token);
+
+			const {
+				id,
+				projectName,
+				startDate,
+				endDate,
+				status,
+				category,
+				area,
+				cno,
+				technicalLeadName,
+				art,
+				architectName,
+				rrt,
+				foremanName,
+				contractValue,
+				contractType,
+				observations,
+			} = req.body;
+
 			const existingProject = await ProjectService.getProjectById(id);
 
 			if (!existingProject) {
 				return res.status(404).json({ message: "Obra não encontrada" });
 			}
 
-			const {
-				prj_name,
-				prj_description,
-				prj_start_date,
-				prj_end_date,
-				prj_status,
-				prj_address,
-				prj_category,
-				prj_area,
-				prj_cno,
-				prj_art,
-				prj_technical_lead_name,
-				prj_architect_name,
-				prj_contract_value,
-				usr_id,
-				usr_name,
-			} = req.body;
-
 			const updatedProject = await ProjectService.updateProjectById(id, {
-				prj_name,
-				prj_description,
-				prj_start_date,
-				prj_end_date,
-				prj_status,
-				prj_address,
-				prj_category,
-				prj_area,
-				prj_cno,
-				prj_art,
-				prj_technical_lead_name,
-				prj_architect_name,
-				prj_contract_value,
-				usr_id,
-				usr_name,
+				prj_name: projectName,
+				prj_start_date: startDate,
+				prj_end_date: endDate,
+				prj_status: status,
+				prj_category: category,
+				prj_area: area,
+				prj_cno: cno,
+				prj_technical_lead_name: technicalLeadName,
+				prj_art: art,
+				prj_architect_name: architectName,
+				prj_rrt: rrt,
+				prj_foreman_name: foremanName,
+				prj_contract_type: contractType,
+				prj_observations: observations,
+				prj_contract_value: contractValue,
+				usr_id: user.id,
+				usr_name: user.username,
 			});
 
 			res
@@ -218,6 +226,10 @@ const ProjectController = {
 		} catch (error) {
 			res.status(500).json({ message: error.message });
 		}
+	},
+
+	createProjectCustomer: async (req, res) => {
+		return null;
 	},
 
 	getProjectStage: async (req, res) => {

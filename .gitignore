@@ -1,5 +1,6 @@
 node_modules/
 .env
+.env_dev
 .vscode/
 coverage/
 docs/instruções.txt

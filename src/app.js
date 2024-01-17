@@ -19,13 +19,13 @@ app.use(cors());
 
 app.use(express.json());
 
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 app.use(routes.userRoutes);
 
 app.use(routes.projectRoutes);
 
 db.hasConnection();
-
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use(handleMiddleware);
 

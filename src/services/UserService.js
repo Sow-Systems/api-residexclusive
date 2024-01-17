@@ -62,10 +62,24 @@ module.exports = {
 	checkPassword: (password, passwordDB) =>
 		bcrypt.compareSync(password, passwordDB),
 
-	getToken: (username) => {
-		const token = jwt.sign({ username }, process.env.JWT_SECRET_USER, {
+	getToken: (id, username) => {
+		const token = jwt.sign({ id, username }, process.env.JWT_SECRET_USER, {
 			expiresIn: "365d",
 		});
 		return token;
+	},
+
+	getUserInToken: async (token) => {
+		let user = { id: null, username: null };
+		if (!token) {
+			return user;
+		}
+		await jwt.verify(token, process.env.JWT_SECRET_USER, (err, decoded) => {
+			if (err) {
+				return user;
+			}
+			user = { id: decoded.id, username: decoded.username };
+		});
+		return user;
 	},
 };

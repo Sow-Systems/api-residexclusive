@@ -21,7 +21,6 @@ const ProjectValidations = {
 	createProject: validate({
 		body: Joi.object({
 			projectName: Joi.string(),
-			description: Joi.string(),
 			startDate: Joi.date(),
 			endDate: Joi.date(),
 			status: Joi.string(),
@@ -44,8 +43,28 @@ const ProjectValidations = {
 				postalCode: Joi.number(),
 				city: Joi.string(),
 				state: Joi.string(),
-			}).required(),
-		}),
+			}),
+		}).required(),
+	}),
+	updateProject: validate({
+		body: Joi.object({
+			id: Joi.number().required(),
+			projectName: Joi.string().required(),
+			startDate: Joi.date().required(),
+			endDate: Joi.date().required(),
+			status: Joi.string().required(),
+			category: Joi.string().required(),
+			area: Joi.number().required(),
+			cno: Joi.string().required(),
+			technicalLeadName: Joi.string().required(),
+			art: Joi.string().required(),
+			architectName: Joi.string().required(),
+			rrt: Joi.string().required(),
+			foremanName: Joi.string().required(),
+			contractValue: Joi.number().required(),
+			contractType: Joi.string().required(),
+			observations: Joi.string().required(),
+		}).required(),
 	}),
 };
 

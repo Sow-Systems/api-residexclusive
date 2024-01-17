@@ -6,18 +6,10 @@ const auth = require("../middlewares/Auth");
 const router = express.Router();
 
 router.post("/login", UserValidations.login, UserController.login);
-router.get(
-	"/user/:id",
-	auth,
-	UserValidations.getUser,
-	UserController.getUserById
-);
-router.get("/users", auth, UserController.getUsers);
-router.post(
-	"/user",
-	auth,
-	UserValidations.createUser,
-	UserController.createUser
-);
+router.use(auth);
+
+router.get("/user/:id", UserValidations.getUser, UserController.getUserById);
+router.get("/users", UserController.getUsers);
+router.post("/user", UserValidations.createUser, UserController.createUser);
 
 module.exports = router;
