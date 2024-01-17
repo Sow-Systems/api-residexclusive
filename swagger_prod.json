@@ -350,7 +350,7 @@
                   },
                   "contractType": {
                     "type": "string",
-                    "example": "Prestacao Servico"
+                    "example": "Prestacao Servicos"
                   },
                   "observations": {
                     "type": "string",
