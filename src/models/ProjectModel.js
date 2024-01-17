@@ -48,11 +48,11 @@ const Project = db.define(
 			type: DataTypes.INTEGER,
 			allowNull: true,
 		},
-		prj_cno: {
-			type: DataTypes.STRING,
+		prj_contract_value: {
+			type: DataTypes.INTEGER,
 			allowNull: true,
 		},
-		prj_art: {
+		prj_cno: {
 			type: DataTypes.STRING,
 			allowNull: true,
 		},
@@ -60,12 +60,28 @@ const Project = db.define(
 			type: DataTypes.STRING,
 			allowNull: true,
 		},
+		prj_art: {
+			type: DataTypes.STRING,
+			allowNull: true,
+		},
 		prj_architect_name: {
 			type: DataTypes.STRING,
 			allowNull: true,
 		},
-		prj_contract_value: {
+		prj_rrt: {
 			type: DataTypes.INTEGER,
+			allowNull: true,
+		},
+		prj_contract_type: {
+			type: DataTypes.STRING,
+			allowNull: true,
+		},
+		prj_foreman_name: {
+			type: DataTypes.STRING,
+			allowNull: true,
+		},
+		prj_observations: {
+			type: DataTypes.STRING,
 			allowNull: true,
 		},
 		usr_id: {

@@ -8,6 +8,7 @@ const ProjectController = {
 		/* #swagger.security = [{
             "bearerAuth": []
     }] */
+		console.log(req);
 		try {
 			const { id } = req.params;
 			const project = await ProjectService.getProjectById(id);
@@ -96,12 +97,14 @@ const ProjectController = {
 				category,
 				area,
 				cno,
-				art,
 				technicalLeadName,
+				art,
 				architectName,
+				rrt,
+				foremanName,
 				contractValue,
-				userId,
-				userName,
+				contractType,
+				observations,
 				address: { street, number, complement, neighborhood, postalCode, city },
 			} = req.body;
 
@@ -139,12 +142,14 @@ const ProjectController = {
 				prj_category: category,
 				prj_area: area,
 				prj_cno: cno,
-				prj_art: art,
 				prj_technical_lead_name: technicalLeadName,
+				prj_art: art,
 				prj_architect_name: architectName,
+				prj_rrt: rrt,
+				prj_foreman_name: foremanName,
+				prj_contract_type: contractType,
+				prj_observations: observations,
 				prj_contract_value: contractValue,
-				usr_id: userId,
-				usr_name: userName,
 			});
 
 			const idProject = newProject.prj_id;

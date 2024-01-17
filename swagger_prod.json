@@ -178,7 +178,7 @@
                   },
                   "status": {
                     "type": "string",
-                    "example": "Ativo"
+                    "example": "Em andamento"
                   },
                   "category": {
                     "type": "string",
@@ -192,21 +192,37 @@
                     "type": "string",
                     "example": "CNO123"
                   },
-                  "art": {
-                    "type": "string",
-                    "example": "ART456"
-                  },
                   "technicalLeadName": {
                     "type": "string",
                     "example": "Monkey D Luffy"
                   },
+                  "art": {
+                    "type": "string",
+                    "example": "ART456"
+                  },                 
                   "architectName": {
                     "type": "string",
                     "example": "Nico Robin"
                   },
+                  "rrt": {
+                    "type": "string",
+                    "example": "1234687954"
+                  },
+                  "foremanName": {
+                    "type": "string",
+                    "example": "Jose da Silva"
+                  },
                   "contractValue": {
                     "type": "number",
                     "example": 1000000
+                  },
+                  "contractType": {
+                    "type": "string",
+                    "example": "Prestacao Servico"
+                  },
+                  "observations": {
+                    "type": "string",
+                    "example": "Tipos de contrato: Mao de Obra - Administracao - Global"
                   },
                   "address": {
                     "type": "object",
@@ -236,14 +252,6 @@
                         "example": "Log Town"
                       }
                     }
-                  },                  
-                  "userId": {
-                    "type": "number",
-                    "example": 1
-                  },
-                  "userName": {
-                    "type": "string",
-                    "example": "admin"
                   }
                 }
               }
