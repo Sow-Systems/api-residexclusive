@@ -9,9 +9,6 @@
       "email": "danilosalys.developer@gmail.com"
     }
   },
- 
-  "host": "localhost:4000",
-
   "tags": [
     {
       "name": "Users",
@@ -25,11 +22,28 @@
   "paths": {
     "/projects": {
       "get": {
-        "tags": ["Projects"],
+        "tags": [
+          "Projects"
+        ],
         "description": "Endpoint para listar todas as obras cadastradas no sistema.",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -44,7 +58,9 @@
     },
     "/project/{id}": {
       "get": {
-        "tags": ["Projects"],
+        "tags": [
+          "Projects"
+        ],
         "description": "Endpoint para listar uma obra pelo ID",
         "parameters": [
           {
@@ -52,14 +68,23 @@
             "in": "path",
             "required": true,
             "schema": {
-              "type": "string",
-              "example": "1"
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
             }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "404": {
             "description": "Not Found"
@@ -101,7 +126,9 @@
     },
     "/project/name/{name}": {
       "get": {
-        "tags": ["Projects"],
+        "tags": [
+          "Projects"
+        ],
         "description": "Endpoint para procurar uma obra pelo nome.",
         "parameters": [
           {
@@ -109,14 +136,23 @@
             "in": "path",
             "required": true,
             "schema": {
-              "type": "string",
-              "example": "Obra Versailes"
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
             }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "404": {
             "description": "Not Found"
@@ -134,11 +170,25 @@
     },
     "/project": {
       "post": {
-        "tags": ["Projects"],
+        "tags": [
+          "Projects"
+        ],
         "description": "Endpoint para cadastrar uma obra no sistema",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "201": {
             "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "409": {
             "description": "Conflict"
@@ -157,93 +207,57 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "properties": {                  
+                "properties": {
+                  "address": {
+                    "example": "any"
+                  },
                   "projectName": {
-                    "type": "string",
-                    "example": "Obra Versailes"
+                    "example": "any"
                   },
                   "description": {
-                    "type": "string",
-                    "example": "Este e um exemplo de obra"
+                    "example": "any"
                   },
                   "startDate": {
-                    "type": "string",
-                    "format": "date",
-                    "example": "2024-01-10"
+                    "example": "any"
                   },
                   "endDate": {
-                    "type": "string",
-                    "format": "date",
-                    "example": "2025-01-20"
+                    "example": "any"
                   },
                   "status": {
-                    "type": "string",
-                    "example": "Ativo"
+                    "example": "any"
                   },
                   "category": {
-                    "type": "string",
-                    "example": "Medio porte"
+                    "example": "any"
                   },
                   "area": {
-                    "type": "decimal",
-                    "example": 150.5
+                    "example": "any"
                   },
                   "cno": {
-                    "type": "string",
-                    "example": "CNO123"
-                  },
-                  "art": {
-                    "type": "string",
-                    "example": "ART456"
+                    "example": "any"
                   },
                   "technicalLeadName": {
-                    "type": "string",
-                    "example": "Monkey D Luffy"
+                    "example": "any"
+                  },
+                  "art": {
+                    "example": "any"
                   },
                   "architectName": {
-                    "type": "string",
-                    "example": "Nico Robin"
+                    "example": "any"
+                  },
+                  "rrt": {
+                    "example": "any"
+                  },
+                  "foremanName": {
+                    "example": "any"
                   },
                   "contractValue": {
-                    "type": "number",
-                    "example": 1000000
+                    "example": "any"
                   },
-                  "address": {
-                    "type": "object",
-                    "properties": {
-                      "street": {
-                        "type": "string",
-                        "example": "Rua Marineford"
-                      },
-                      "number": {
-                        "type": "number",
-                        "example": 44
-                      },
-                      "complement": {
-                        "type": "string",
-                        "example": "Quadra 50 Lote 85"
-                      },
-                      "neighborhood": {
-                        "type": "string",
-                        "example": "Udon"
-                      },
-                      "postalCode": {
-                        "type": "number",
-                        "example": 14095050
-                      },
-                      "city": {
-                        "type": "string",
-                        "example": "Log Town"
-                      }
-                    }
-                  },      
-                  "userId": {
-                    "type": "number",
-                    "example": 1
-                  },            
-                  "userName": {
-                    "type": "string",
-                    "example": "admin"
+                  "contractType": {
+                    "example": "any"
+                  },
+                  "observations": {
+                    "example": "any"
                   }
                 }
               }
@@ -252,10 +266,140 @@
         }
       }
     },
+    "/project/stage": {
+      "get": {
+        "tags": [
+          "Projects"
+        ],
+        "description": "Endpoint para obter as etapas de uma obra",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Projects"
+        ],
+        "description": "Endpoint para adicionar etapas a uma obra",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Projects"
+        ],
+        "description": "Endpoint para excluir etapas de uma obra",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/project/customer": {
+      "post": {
+        "tags": [
+          "Projects"
+        ],
+        "description": "Endpoint para adicionar etapas a uma obra",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
     "/login": {
       "post": {
-        "tags": ["Users"],
-        "description": "Endpoint para o usuário efetuar o login no sistema",
+        "tags": [
+          "Users"
+        ],
+        "description": "Endpoint para o usuario efetuar o login no sistema",
         "responses": {
           "200": {
             "description": "OK"
@@ -277,12 +421,10 @@
                 "type": "object",
                 "properties": {
                   "username": {
-                    "type": "string",
-                    "example": "kaido"
+                    "example": "any"
                   },
                   "password": {
-                    "type": "string",
-                    "example": "senhasenhasenha"
+                    "example": "any"
                   }
                 }
               }
@@ -293,7 +435,9 @@
     },
     "/user/{id}": {
       "get": {
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "description": "Endpoint para listar um usuário pelo ID",
         "parameters": [
           {
@@ -301,14 +445,23 @@
             "in": "path",
             "required": true,
             "schema": {
-              "type": "number",
-              "example": 1
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
             }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "404": {
             "description": "Not Found"
@@ -326,11 +479,25 @@
     },
     "/users": {
       "get": {
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "description": "Endpoint para listar todas os usuários cadastrados.",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "500": {
             "description": "Internal Server Error"
@@ -345,11 +512,25 @@
     },
     "/user": {
       "post": {
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "description": "Endpoint para cadastrar um usuário",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "201": {
             "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "409": {
             "description": "Conflict"
@@ -370,26 +551,19 @@
                 "type": "object",
                 "properties": {
                   "username": {
-                    "type": "string",
-                    "example": "sabo"
+                    "example": "any"
                   },
                   "name": {
-                    "type": "string",
-                    "example": "Sabo Ace"
+                    "example": "any"
                   },
                   "email": {
-                    "type": "string",
-                    "format": "email",
-                    "example": "sabo.ace@gmail.com"
+                    "example": "any"
                   },
                   "password": {
-                    "type": "string",
-                    "example": "senhasenhasenha123"
+                    "example": "any"
                   },
                   "birthdate": {
-                    "type": "string",
-                    "format": "date",
-                    "example": "1990-01-01"
+                    "example": "any"
                   }
                 }
               }

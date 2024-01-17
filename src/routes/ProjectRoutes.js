@@ -30,8 +30,9 @@ router.get("/project/stage", auth, ProjectController.getProjectStage);
 router.post("/project/stage", auth, ProjectController.createProjectStage);
 router.delete("/project/stage", auth, ProjectController.deleteProjectStage);
 
-//router.get("/project/customer", ProjectController.getProjectCustomer);
-router.post("/project/customer", auth, ProjectController.createProjectStage);
-router.delete("/project/stage", auth, ProjectController.deleteProjectStage);
+// router.get("/project/customer", ProjectController.getProjectCustomer);
+// router.post("/project/customer", auth, ProjectController.createProjectCustomer);
+// router.put("/project/customer", auth, ProjectController.createProjectCustomer);
+// router.delete("/project/customer", auth, ProjectController.deleteProjectCustomer);
 
 module.exports = router;

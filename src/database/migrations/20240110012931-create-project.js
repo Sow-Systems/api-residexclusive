@@ -45,11 +45,11 @@ module.exports = {
 				type: Sequelize.INTEGER,
 				allowNull: true,
 			},
-			prj_cno: {
-				type: Sequelize.STRING,
+			prj_contract_value: {
+				type: Sequelize.INTEGER,
 				allowNull: true,
 			},
-			prj_art: {
+			prj_cno: {
 				type: Sequelize.STRING,
 				allowNull: true,
 			},
@@ -57,12 +57,28 @@ module.exports = {
 				type: Sequelize.STRING,
 				allowNull: true,
 			},
+			prj_art: {
+				type: Sequelize.STRING,
+				allowNull: true,
+			},
 			prj_architect_name: {
 				type: Sequelize.STRING,
 				allowNull: true,
 			},
-			prj_contract_value: {
+			prj_rrt: {
 				type: Sequelize.INTEGER,
+				allowNull: true,
+			},
+			prj_contract_type: {
+				type: Sequelize.STRING,
+				allowNull: true,
+			},
+			prj_foreman_name: {
+				type: Sequelize.STRING,
+				allowNull: true,
+			},
+			prj_observations: {
+				type: Sequelize.STRING,
 				allowNull: true,
 			},
 			usr_id: {
