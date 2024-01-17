@@ -162,10 +162,6 @@
                     "type": "string",
                     "example": "Obra Versailes"
                   },
-                  "description": {
-                    "type": "string",
-                    "example": "Este e um exemplo de obra"
-                  },
                   "startDate": {
                     "type": "string",
                     "format": "date",

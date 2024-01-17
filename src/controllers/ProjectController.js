@@ -90,7 +90,6 @@ const ProjectController = {
 		try {
 			const {
 				projectName,
-				description,
 				startDate,
 				endDate,
 				status,
@@ -135,7 +134,6 @@ const ProjectController = {
 			const newProject = await ProjectService.createProject({
 				add_id: newAddress.add_id,
 				prj_name: projectName,
-				prj_description: description,
 				prj_start_date: startDate,
 				prj_end_date: endDate,
 				prj_status: status,
