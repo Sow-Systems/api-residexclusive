@@ -24,10 +24,6 @@ const Project = db.define(
 			type: DataTypes.STRING,
 			allowNull: true,
 		},
-		prj_description: {
-			type: DataTypes.STRING,
-			allowNull: true,
-		},
 		prj_start_date: {
 			type: DataTypes.DATE,
 			allowNull: true,
