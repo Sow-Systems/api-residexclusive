@@ -21,10 +21,6 @@ module.exports = {
 				type: Sequelize.STRING,
 				allowNull: true,
 			},
-			prj_description: {
-				type: Sequelize.STRING,
-				allowNull: true,
-			},
 			prj_start_date: {
 				type: Sequelize.DATE,
 				allowNull: true,
