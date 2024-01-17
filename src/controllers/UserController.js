@@ -19,7 +19,7 @@ const UserController = {
 			if (!UserService.checkPassword(password, user.usr_password)) {
 				return res.status(401).send({ message: "Credenciais inválidas" });
 			}
-			let token = UserService.getToken(username);
+			let token = UserService.getToken(user.usr_id, username);
 			return res.status(200).json({ token });
 		} catch (error) {
 			res.status(500).json({ message: error.message });

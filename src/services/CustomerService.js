@@ -23,7 +23,7 @@ module.exports = {
 
 	updateCustomerById: async (customerId, updatedCustomerData) => {
 		try {
-			const existingCustomer = await Customer.findByPk(CustomerId);
+			const existingCustomer = await Customer.findByPk(customerId);
 
 			if (!existingCustomer) {
 				throw new Error("Cliente não encontrado");
