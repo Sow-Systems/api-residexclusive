@@ -331,7 +331,7 @@
                   "art": {
                     "type": "string",
                     "example": "ART456"
-                  },                 
+                  },
                   "architectName": {
                     "type": "string",
                     "example": "Nico Robin"
@@ -350,19 +350,19 @@
                   },
                   "contractType": {
                     "type": "string",
-                    "example": "Prestacao Servicos"
+                    "example": "Prestacao Servico"
                   },
                   "observations": {
                     "type": "string",
-                    "example": "Tipos de contrato: Mao de Obra - Administracao - Global"                  
+                    "example": "Tipos de contrato: Mao de Obra - Administracao - Global"
+                  }
                 }
               }
             }
           }
-        }
       }
-    },
-    
+    }
+  },
     "/login": {
       "post": {
         "tags": ["Users"],
