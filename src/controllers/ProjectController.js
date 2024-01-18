@@ -1,6 +1,7 @@
 const AddressService = require("../services/AddressService");
 const ProjectService = require("../services/ProjectService");
 const UserService = require("../services/UserService");
+const CustomerService = require("../services/CustomerService");
 
 const ProjectController = {
 	getProjectById: async (req, res) => {
@@ -228,7 +229,32 @@ const ProjectController = {
 		}
 	},
 
+	getAllCustomers: async (req, res) => {
+		// #swagger.tags = ['Projects']
+		// #swagger.description = 'Endpoint para listar todas os clientes cadastradas no sistema.'
+		/* #swagger.security = [{
+            "bearerAuth": []
+    		}] */
+		try {
+			const customers = await CustomerService.getAllCustomers();
+			if (!customers) {
+				return res
+					.status(404)
+					.json({ message: "Nao ha clientes cadastrados no sistema" });
+			}
+			const customers_name = customers.cus_name;
+			res.status(200).json(customers_name);
+		} catch (error) {
+			res.status(500).json({ message: error.message });
+		}
+	},
+
 	createProjectCustomer: async (req, res) => {
+		// #swagger.tags = ['Projects']
+		// #swagger.description = 'Endpoint para Cadastrar um Cliente em uma obra'
+		/* #swagger.security = [{
+        "bearerAuth": []
+    }] */
 		return null;
 	},
 

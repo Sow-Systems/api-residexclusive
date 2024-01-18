@@ -28,8 +28,8 @@ router.put(
 	ProjectController.updateProject
 );
 
-// router.get("/project/customer", ProjectController.getProjectCustomer);
-//router.post("/project/customer", ProjectController.createProjectCustomer);
+router.get("/project/customers", ProjectController.getAllCustomers);
+router.post("/project/customer", ProjectController.createProjectCustomer);
 // router.put("/project/customer", auth, ProjectController.createProjectCustomer);
 // router.delete("/project/customer", auth, ProjectController.deleteProjectCustomer);
 

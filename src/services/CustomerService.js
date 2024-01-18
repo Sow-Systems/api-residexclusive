@@ -1,6 +1,17 @@
 const Customer = require("../models/CustomerModel");
 
 module.exports = {
+	getAllCustomers: async () => {
+		try {
+			const customers = await Customer.findAll();
+			return customers;
+		} catch (error) {
+			throw new Error(
+				`Erro ao obter os clientes no banco de dados: ${error.message}`
+			);
+		}
+	},
+
 	getCustomerById: async (id) => {
 		try {
 			const customer = await Customer.findByPk(id);
