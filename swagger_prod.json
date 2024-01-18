@@ -186,7 +186,7 @@
                   },
                   "cno": {
                     "type": "string",
-                    "example": "CNO123"
+                    "example": "121654"
                   },
                   "technicalLeadName": {
                     "type": "string",
@@ -194,7 +194,7 @@
                   },
                   "art": {
                     "type": "string",
-                    "example": "ART456"
+                    "example": "1233456"
                   },                 
                   "architectName": {
                     "type": "string",
@@ -326,7 +326,7 @@
                   },
                   "cno": {
                     "type": "string",
-                    "example": "CNO123"
+                    "example": "1231O123"
                   },
                   "technicalLeadName": {
                     "type": "string",
@@ -334,7 +334,7 @@
                   },
                   "art": {
                     "type": "string",
-                    "example": "ART456"
+                    "example": "213456"
                   },
                   "architectName": {
                     "type": "string",
