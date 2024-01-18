@@ -11,10 +11,6 @@ const Customer = db.define(
 			autoIncrement: true,
 			primaryKey: true,
 		},
-		add_id: {
-			type: DataTypes.INTEGER,
-			allowNull: true,
-		},
 		cus_name: {
 			type: DataTypes.STRING(100),
 			allowNull: true,

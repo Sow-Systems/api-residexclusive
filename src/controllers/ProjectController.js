@@ -242,8 +242,7 @@ const ProjectController = {
 					.status(404)
 					.json({ message: "Nao ha clientes cadastrados no sistema" });
 			}
-			const customers_name = customers.cus_name;
-			res.status(200).json(customers_name);
+			res.status(200).json(customers);
 		} catch (error) {
 			res.status(500).json({ message: error.message });
 		}
@@ -255,7 +254,40 @@ const ProjectController = {
 		/* #swagger.security = [{
         "bearerAuth": []
     }] */
-		return null;
+		try {
+			const token = req.headers.authorization?.split(" ")[1];
+			const user = await UserService.getUserInToken(token);
+			const {
+				idProject,
+				name,
+				birthdate,
+				phone,
+				email,
+				type,
+				cpf,
+				cnpj,
+				notes,
+			} = req.body;
+
+			const newCustomer = await CustomerService.createCustomer({
+				cus_name: name,
+				cus_birthdate: birthdate,
+				cus_phone: phone,
+				cus_email: email,
+				cus_type: type,
+				cus_cpf: cpf,
+				cus_cnpj: cnpj,
+				cus_notes: notes,
+				usr_id: user.id,
+				usr_username: user.username,
+			});
+
+			res
+				.status(201)
+				.json({ message: "Obra cadastrada com sucesso!", idProject });
+		} catch (error) {
+			res.status(500).json({ message: error.message });
+		}
 	},
 
 	getProjectStage: async (req, res) => {

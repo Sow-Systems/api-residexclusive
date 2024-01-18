@@ -9,6 +9,12 @@
       "email": "danilosalys.developer@gmail.com"
     }
   },
+
+  "servers": [
+    {
+      "url": "https://api-residexclusive.onrender.com"
+    }
+  ],
  
   "host": "https://api-residexclusive.onrender.com",
 
@@ -367,7 +373,7 @@
       }
     }
   },
-  "/project/customers": {
+  "/project-customers": {
     "get": {
       "tags": [
         "Projects"
@@ -403,7 +409,7 @@
       ]
     }
   },
-  "/project/customer": {
+  "/project-customer": {
     "post": {
       "tags": [
         "Projects"
