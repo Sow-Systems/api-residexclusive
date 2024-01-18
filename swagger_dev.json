@@ -219,97 +219,54 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "properties": {                  
+                "properties": {
+                  "address": {
+                    "example": "any"
+                  },
                   "projectName": {
-                    "type": "string",
-                    "example": "Obra Versailes"
+                    "example": "any"
                   },
                   "startDate": {
-                    "type": "string",
-                    "format": "date",
-                    "example": "2024-01-10"
+                    "example": "any"
                   },
                   "endDate": {
-                    "type": "string",
-                    "format": "date",
-                    "example": "2025-01-20"
+                    "example": "any"
                   },
                   "status": {
-                    "type": "string",
-                    "example": "Em andamento"
+                    "example": "any"
                   },
                   "category": {
-                    "type": "string",
-                    "example": "Medio porte"
+                    "example": "any"
                   },
                   "area": {
-                    "type": "decimal",
-                    "example": 150.5
+                    "example": "any"
                   },
                   "cno": {
-                    "type": "string",
-                    "example": "CNO123"
+                    "example": "any"
                   },
                   "technicalLeadName": {
-                    "type": "string",
-                    "example": "Monkey D Luffy"
+                    "example": "any"
                   },
                   "art": {
-                    "type": "string",
-                    "example": "ART456"
-                  },                 
+                    "example": "any"
+                  },
                   "architectName": {
-                    "type": "string",
-                    "example": "Nico Robin"
+                    "example": "any"
                   },
                   "rrt": {
-                    "type": "string",
-                    "example": "1234687954"
+                    "example": "any"
                   },
                   "foremanName": {
-                    "type": "string",
-                    "example": "Jose da Silva"
+                    "example": "any"
                   },
                   "contractValue": {
-                    "type": "number",
-                    "example": 1000000
+                    "example": "any"
                   },
                   "contractType": {
-                    "type": "string",
-                    "example": "Prestacao Servico"
+                    "example": "any"
                   },
                   "observations": {
-                    "type": "string",
-                    "example": "Tipos de contrato: Mao de Obra - Administracao - Global"
-                  },
-                  "address": {
-                    "type": "object",
-                    "properties": {
-                      "street": {
-                        "type": "string",
-                        "example": "Rua Marineford"
-                      },
-                      "number": {
-                        "type": "number",
-                        "example": 44
-                      },
-                      "complement": {
-                        "type": "string",
-                        "example": "Quadra 50 Lote 85"
-                      },
-                      "neighborhood": {
-                        "type": "string",
-                        "example": "Udon"
-                      },
-                      "postalCode": {
-                        "type": "number",
-                        "example": 14095050
-                      },
-                      "city": {
-                        "type": "string",
-                        "example": "Log Town"
-                      }
-                    }
+                    "example": "any"
                   }
                 }
               }
@@ -356,6 +313,9 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "id": {
+                    "example": "any"
+                  },
                   "projectName": {
                     "example": "any"
                   },
@@ -408,31 +368,12 @@
         }
       }
     },
-    "/project/customer": {
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "401": {
-            "description": "Unauthorized"
-          }
-        }
-      }
-    },
-    "/project/stage": {
+    "/project/customers": {
       "get": {
         "tags": [
           "Projects"
         ],
-        "description": "Endpoint para obter as etapas de uma obra",
+        "description": "Endpoint para listar todas os clientes cadastradas no sistema.",
         "parameters": [
           {
             "name": "authorization",
@@ -449,6 +390,9 @@
           "401": {
             "description": "Unauthorized"
           },
+          "404": {
+            "description": "Not Found"
+          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -458,12 +402,14 @@
             "bearerAuth": []
           }
         ]
-      },
+      }
+    },
+    "/project/customer": {
       "post": {
         "tags": [
           "Projects"
         ],
-        "description": "Endpoint para adicionar etapas a uma obra",
+        "description": "Endpoint para Cadastrar um Cliente em uma obra",
         "parameters": [
           {
             "name": "authorization",
@@ -474,45 +420,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
           "401": {
             "description": "Unauthorized"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
-      },
-      "delete": {
-        "tags": [
-          "Projects"
-        ],
-        "description": "Endpoint para excluir etapas de uma obra",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         },
         "security": [

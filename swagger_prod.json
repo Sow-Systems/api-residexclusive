@@ -186,7 +186,7 @@
                   },
                   "cno": {
                     "type": "string",
-                    "example": "CNO123"
+                    "example": "121654"
                   },
                   "technicalLeadName": {
                     "type": "string",
@@ -194,7 +194,7 @@
                   },
                   "art": {
                     "type": "string",
-                    "example": "ART456"
+                    "example": "1233456"
                   },                 
                   "architectName": {
                     "type": "string",
@@ -326,7 +326,7 @@
                   },
                   "cno": {
                     "type": "string",
-                    "example": "CNO123"
+                    "example": "1231O123"
                   },
                   "technicalLeadName": {
                     "type": "string",
@@ -334,7 +334,7 @@
                   },
                   "art": {
                     "type": "string",
-                    "example": "ART456"
+                    "example": "213456"
                   },
                   "architectName": {
                     "type": "string",
@@ -365,6 +365,69 @@
             }
           }
       }
+    }
+  },
+  "/project/customers": {
+    "get": {
+      "tags": [
+        "Projects"
+      ],
+      "description": "Endpoint para listar todas os clientes cadastradas no sistema.",
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK"
+        },
+        "401": {
+          "description": "Unauthorized"
+        },
+        "404": {
+          "description": "Not Found"
+        },
+        "500": {
+          "description": "Internal Server Error"
+        }
+      },
+      "security": [
+        {
+          "bearerAuth": []
+        }
+      ]
+    }
+  },
+  "/project/customer": {
+    "post": {
+      "tags": [
+        "Projects"
+      ],
+      "description": "Endpoint para Cadastrar um Cliente em uma obra",
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "401": {
+          "description": "Unauthorized"
+        }
+      },
+      "security": [
+        {
+          "bearerAuth": []
+        }
+      ]
     }
   },
     "/login": {
