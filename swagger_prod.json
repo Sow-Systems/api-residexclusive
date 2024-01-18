@@ -294,6 +294,10 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "id": {
+                    "type": "number",
+                    "example": 1
+                  },
                   "projectName": {
                     "type": "string",
                     "example": "Obra Versailes"
@@ -350,7 +354,7 @@
                   },
                   "contractType": {
                     "type": "string",
-                    "example": "Prestacao Servicos"
+                    "example": "Prestacao Servico"
                   },
                   "observations": {
                     "type": "string",
