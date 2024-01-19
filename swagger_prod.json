@@ -425,17 +425,61 @@
         }
       ],
       "responses": {
+        "201": {
+          "description": "Created"
+        },
         "401": {
           "description": "Unauthorized"
+        },
+        "500": {
+          "description": "Internal Server Error"
         }
       },
       "security": [
         {
           "bearerAuth": []
         }
-      ]
+      ],
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "idProject": {
+                  "example": "1"
+                },
+                "name": {
+                  "example": "Chopper"
+                },
+                "birthdate": {
+                  "example": "1990-01-01"
+                },
+                "phone": {
+                  "example": "16981596666"
+                },
+                "email": {
+                  "example": "cliente@cliente.com"
+                },
+                "type": {
+                  "example": "PJ"
+                },
+                "cpf": {
+                  "example": null
+                },
+                "cnpj": {
+                  "example": "05651966000155"
+                },
+                "notes": {
+                  "example": "Caso o tipo do cliente seja PJ, cadastrar o campo CNPJ se for PF, enviar o campo CPF"
+                }
+              }
+            }
+          }
+        }
+      }
     }
-  },
+  }, 
     "/login": {
       "post": {
         "tags": ["Users"],
