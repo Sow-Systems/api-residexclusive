@@ -18,7 +18,7 @@ const Stage = db.define(
 			type: DataTypes.INTEGER,
 			allowNull: true,
 		},
-		usr_name: {
+		usr_username: {
 			type: DataTypes.STRING(45),
 			allowNull: true,
 		},
