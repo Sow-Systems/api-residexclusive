@@ -66,6 +66,19 @@ const ProjectValidations = {
 			observations: Joi.string().required(),
 		}).required(),
 	}),
+	createProjectCustomer: validate({
+		body: Joi.object({
+			idProject: Joi.number(),
+			name: Joi.string().required(),
+			birthdate: Joi.date(),
+			phone: Joi.string(),
+			email: Joi.string().email(),
+			type: Joi.string(2),
+			cpf: Joi.string(),
+			cnpj: Joi.string(),
+			notes: Joi.string(),
+		}),
+	}),
 };
 
 module.exports = ProjectValidations;
