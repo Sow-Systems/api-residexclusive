@@ -81,7 +81,7 @@ module.exports = {
 				type: Sequelize.INTEGER,
 				allowNull: true,
 			},
-			usr_name: {
+			usr_username: {
 				type: Sequelize.STRING,
 				allowNull: true,
 			},
