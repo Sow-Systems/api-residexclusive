@@ -284,7 +284,7 @@ const ProjectController = {
 
 			res
 				.status(201)
-				.json({ message: "Obra cadastrada com sucesso!", idProject });
+				.json({ message: "Cliente cadastrado com sucesso!", newCustomer });
 		} catch (error) {
 			res.status(500).json({ message: error.message });
 		}
