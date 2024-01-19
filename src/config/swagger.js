@@ -1,11 +1,11 @@
 const swaggerAutogen = require("swagger-autogen")({ openapi: "3.0.0" });
 require("dotenv").config();
 
-const outputFile = require("../../swagger_dev.json");
+const outputFile = "../../swagger_dev.json";
 const endpointFiles = ["../routes/*.js"];
 
 if (process.env.NODE_ENV === "production") {
-	outputFile = require("../../swagger_prod.json");
+	outputFile = "../../swagger_prod.json";
 }
 
 const doc = {
