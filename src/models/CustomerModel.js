@@ -47,7 +47,7 @@ const Customer = db.define(
 			type: DataTypes.INTEGER,
 			allowNull: true,
 		},
-		usr_name: {
+		usr_username: {
 			type: DataTypes.STRING,
 			allowNull: true,
 		},

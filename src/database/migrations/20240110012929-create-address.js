@@ -52,8 +52,8 @@ module.exports = {
 				type: Sequelize.INTEGER,
 				allowNull: true,
 			},
-			usr_name: {
-				type: Sequelize.STRING(100),
+			usr_username: {
+				type: Sequelize.STRING,
 				allowNull: true,
 			},
 			created_at: {
