@@ -73,7 +73,7 @@ const ProjectValidations = {
 			birthdate: Joi.date(),
 			phone: Joi.string(),
 			email: Joi.string().email(),
-			type: Joi.string(2),
+			type: Joi.string(),
 			cpf: Joi.string(),
 			cnpj: Joi.string(),
 			notes: Joi.string(),
