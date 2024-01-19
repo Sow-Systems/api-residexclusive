@@ -132,7 +132,7 @@ const ProjectController = {
 				add_state: addressData.state,
 				add_postal_code: addressData.postalCode,
 				usr_id: user.id,
-				usr_name: user.username,
+				usr_username: user.username,
 			});
 
 			const newProject = await ProjectService.createProject({
@@ -153,7 +153,7 @@ const ProjectController = {
 				prj_observations: observations,
 				prj_contract_value: contractValue,
 				usr_id: user.id,
-				usr_name: user.username,
+				usr_username: user.username,
 			});
 
 			const idProject = newProject.prj_id;
@@ -218,7 +218,7 @@ const ProjectController = {
 				prj_observations: observations,
 				prj_contract_value: contractValue,
 				usr_id: user.id,
-				usr_name: user.username,
+				usr_username: user.username,
 			});
 
 			res
