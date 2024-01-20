@@ -17,9 +17,87 @@
     {
       "name": "Projects",
       "description": "Métodos referentes ao cadastro de Obras do sistema"
+    },
+    {
+      "name": "Customers",
+      "description": "Métodos referentes ao cadastro de Clientes do sistema"
     }
   ],
   "paths": {
+    "/customer-address": {
+      "post": {
+        "tags": [
+          "Customers"
+        ],
+        "description": "Endpoint para cadastrar um endereço no cadastro do cliente",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "idCustomer": {
+                    "example": "any"
+                  },
+                  "description": {
+                    "example": "any"
+                  },
+                  "street": {
+                    "example": "any"
+                  },
+                  "number": {
+                    "example": "any"
+                  },
+                  "complement": {
+                    "example": "any"
+                  },
+                  "neighborhood": {
+                    "example": "any"
+                  },
+                  "city": {
+                    "example": "any"
+                  },
+                  "state": {
+                    "example": "any"
+                  },
+                  "postalCode": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/projects": {
       "get": {
         "tags": [
@@ -442,6 +520,9 @@
                 "type": "object",
                 "properties": {
                   "idProject": {
+                    "example": "any"
+                  },
+                  "idCustomer": {
                     "example": "any"
                   },
                   "name": {

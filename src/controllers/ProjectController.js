@@ -108,7 +108,15 @@ const ProjectController = {
 				contractValue,
 				contractType,
 				observations,
-				address: { street, number, complement, neighborhood, postalCode, city },
+				address: {
+					street,
+					number,
+					complement,
+					neighborhood,
+					postalCode,
+					city,
+					condominium,
+				},
 			} = req.body;
 
 			const addressData = req.body.address;
@@ -128,6 +136,7 @@ const ProjectController = {
 				add_number: addressData.number,
 				add_complement: addressData.complement,
 				add_neighborhood: addressData.neighborhood,
+				add_observations1: addressData.condominium,
 				add_city: addressData.city,
 				add_state: addressData.state,
 				add_postal_code: addressData.postalCode,
@@ -259,6 +268,7 @@ const ProjectController = {
 			const user = await UserService.getUserInToken(token);
 			const {
 				idProject,
+				idCustomer,
 				name,
 				birthdate,
 				phone,
@@ -268,23 +278,31 @@ const ProjectController = {
 				cnpj,
 				notes,
 			} = req.body;
+			console.log(idCustomer);
+			let IdCustomerProject = idCustomer;
+			if (idCustomer == 0) {
+				const newCustomer = await CustomerService.createCustomer({
+					cus_name: name,
+					cus_birthdate: birthdate,
+					cus_phone: phone,
+					cus_email: email,
+					cus_type: type,
+					cus_cpf: cpf,
+					cus_cnpj: cnpj,
+					cus_notes: notes,
+					usr_id: user.id,
+					usr_username: user.username,
+				});
+				console.log(newCustomer);
+				IdCustomerProject = newCustomer.cus_id;
+			}
 
-			const newCustomer = await CustomerService.createCustomer({
-				cus_name: name,
-				cus_birthdate: birthdate,
-				cus_phone: phone,
-				cus_email: email,
-				cus_type: type,
-				cus_cpf: cpf,
-				cus_cnpj: cnpj,
-				cus_notes: notes,
-				usr_id: user.id,
-				usr_username: user.username,
-			});
+			const projectCustomer = await ProjectService.setProjectCustomer(
+				idProject,
+				IdCustomerProject
+			);
 
-			res
-				.status(201)
-				.json({ message: "Cliente cadastrado com sucesso!", newCustomer });
+			res.status(201).json({ message: "Cliente cadastrado com sucesso!" });
 		} catch (error) {
 			res.status(500).json({ message: error.message });
 		}

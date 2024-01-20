@@ -1,4 +1,5 @@
-const projectRoutes = require("./ProjectRoutes");
-const userRoutes = require("./UserRoutes");
+const ProjectRoutes = require("./ProjectRoutes");
+const UserRoutes = require("./UserRoutes");
+const CustomerRoutes = require("./CustomerRoutes");
 
-module.exports = { projectRoutes, userRoutes };
+module.exports = { ProjectRoutes, UserRoutes, CustomerRoutes };
