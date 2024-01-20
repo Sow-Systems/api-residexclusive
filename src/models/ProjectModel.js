@@ -25,11 +25,11 @@ const Project = db.define(
 			allowNull: true,
 		},
 		prj_start_date: {
-			type: DataTypes.DATE,
+			type: DataTypes.DATEONLY,
 			allowNull: true,
 		},
 		prj_end_date: {
-			type: DataTypes.DATE,
+			type: DataTypes.DATEONLY,
 			allowNull: true,
 		},
 		prj_status: {

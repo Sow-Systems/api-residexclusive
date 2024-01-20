@@ -115,6 +115,7 @@ const ProjectController = {
 					neighborhood,
 					postalCode,
 					city,
+					state,
 					condominium,
 				},
 			} = req.body;
@@ -278,8 +279,9 @@ const ProjectController = {
 				cnpj,
 				notes,
 			} = req.body;
-			console.log(idCustomer);
+
 			let IdCustomerProject = idCustomer;
+
 			if (idCustomer == 0) {
 				const newCustomer = await CustomerService.createCustomer({
 					cus_name: name,
@@ -293,14 +295,11 @@ const ProjectController = {
 					usr_id: user.id,
 					usr_username: user.username,
 				});
-				console.log(newCustomer);
+
 				IdCustomerProject = newCustomer.cus_id;
 			}
 
-			const projectCustomer = await ProjectService.setProjectCustomer(
-				idProject,
-				IdCustomerProject
-			);
+			await ProjectService.setProjectCustomer(idProject, IdCustomerProject);
 
 			res.status(201).json({ message: "Cliente cadastrado com sucesso!" });
 		} catch (error) {

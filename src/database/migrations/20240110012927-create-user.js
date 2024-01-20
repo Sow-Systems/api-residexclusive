@@ -30,7 +30,7 @@ module.exports = {
 				allowNull: false,
 			},
 			usr_birthdate: {
-				type: Sequelize.DATE,
+				type: Sequelize.DATEONLY,
 				allowNull: false,
 			},
 			usr_admin: {

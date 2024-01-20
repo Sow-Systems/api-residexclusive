@@ -28,7 +28,7 @@ const User = db.define(
 			allowNull: false,
 		},
 		usr_birthdate: {
-			type: DataTypes.DATE,
+			type: DataTypes.DATEONLY,
 			allowNull: false,
 		},
 		usr_admin: {

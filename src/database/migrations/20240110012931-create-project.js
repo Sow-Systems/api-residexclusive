@@ -22,11 +22,11 @@ module.exports = {
 				allowNull: true,
 			},
 			prj_start_date: {
-				type: Sequelize.DATE,
+				type: Sequelize.DATEONLY,
 				allowNull: true,
 			},
 			prj_end_date: {
-				type: Sequelize.DATE,
+				type: Sequelize.DATEONLY,
 				allowNull: true,
 			},
 			prj_status: {

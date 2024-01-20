@@ -26,10 +26,12 @@ module.exports = {
 
 	createCustomer: async (customerData) => {
 		try {
-			const checkCustomer = await Customer.findAll({ where: customerData });
+			const { usr_id, usr_username, ...findCustomerData } = customerData;
 
-			if (checkCustomer) {
-				throw new Error(`Este cliente já existe!`);
+			const customer = await Customer.findAll({ where: findCustomerData });
+
+			if (customer.length > 0) {
+				return customer[0];
 			}
 			const newCustomer = await Customer.create(customerData);
 			return newCustomer;
@@ -40,10 +42,11 @@ module.exports = {
 
 	createCustomerAddress: async (customerAddressData) => {
 		try {
-			const { usr_id, usr_username, ...findCustomerData } = customerAddressData;
+			const { usr_id, usr_username, ...findCustomerAddressData } =
+				customerAddressData;
 
 			const customerAddress = await CustomerAddress.findAll({
-				where: findCustomerData,
+				where: findCustomerAddressData,
 			});
 			if (customerAddress.length > 0) {
 				return null;

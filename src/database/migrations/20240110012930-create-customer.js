@@ -14,7 +14,7 @@ module.exports = {
 				allowNull: true,
 			},
 			cus_birthdate: {
-				type: Sequelize.DATE,
+				type: Sequelize.DATEONLY,
 				allowNull: true,
 			},
 			cus_phone: {
