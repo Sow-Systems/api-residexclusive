@@ -18,7 +18,7 @@ module.exports = {
 				allowNull: true,
 			},
 			cct_birthdate: {
-				type: Sequelize.DATE,
+				type: Sequelize.DATEONLY,
 				allowNull: true,
 			},
 			cct_phone: {

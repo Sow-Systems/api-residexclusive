@@ -16,7 +16,7 @@ const Customer = db.define(
 			allowNull: true,
 		},
 		cus_birthdate: {
-			type: DataTypes.DATE,
+			type: DataTypes.DATEONLY,
 			allowNull: true,
 		},
 		cus_phone: {
