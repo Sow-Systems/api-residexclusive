@@ -21,9 +21,11 @@ app.use(express.json());
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-app.use(routes.userRoutes);
+app.use(routes.UserRoutes);
 
-app.use(routes.projectRoutes);
+app.use(routes.ProjectRoutes);
+
+app.use(routes.CustomerRoutes);
 
 db.hasConnection();
 

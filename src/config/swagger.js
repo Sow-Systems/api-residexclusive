@@ -28,6 +28,10 @@ const doc = {
 			name: "Projects",
 			description: "Métodos referentes ao cadastro de Obras do sistema",
 		},
+		{
+			name: "Customers",
+			description: "Métodos referentes ao cadastro de Clientes do sistema",
+		},
 	],
 
 	components: {

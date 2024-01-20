@@ -1,4 +1,5 @@
 const Customer = require("../models/CustomerModel");
+const CustomerAddress = require("../models/CustomerAddress");
 
 module.exports = {
 	getAllCustomers: async () => {
@@ -25,6 +26,11 @@ module.exports = {
 
 	createCustomer: async (customerData) => {
 		try {
+			const checkCustomer = await Customer.findAll({ where: customerData });
+
+			if (checkCustomer) {
+				throw new Error(`Este cliente já existe!`);
+			}
 			const newCustomer = await Customer.create(customerData);
 			return newCustomer;
 		} catch (error) {
@@ -32,19 +38,40 @@ module.exports = {
 		}
 	},
 
-	updateCustomerById: async (customerId, updatedCustomerData) => {
+	createCustomerAddress: async (customerAddressData) => {
 		try {
-			const existingCustomer = await Customer.findByPk(customerId);
+			const { usr_id, usr_username, ...findCustomerData } = customerAddressData;
+
+			const customerAddress = await CustomerAddress.findAll({
+				where: findCustomerData,
+			});
+			if (customerAddress.length > 0) {
+				return null;
+			}
+			const newCustomerAddress = await CustomerAddress.create(
+				customerAddressData
+			);
+			return newCustomerAddress;
+		} catch (error) {
+			throw new Error(
+				`Erro ao inserir o endereco no cadastro do cliente: ${error.message}`
+			);
+		}
+	},
+
+	updateCustomerById: async (idCustomer, updatedCustomerData) => {
+		try {
+			const existingCustomer = await Customer.findByPk(idCustomer);
 
 			if (!existingCustomer) {
 				throw new Error("Cliente não encontrado");
 			}
 
 			await Customer.update(updatedCustomerData, {
-				where: { cus_id: customerId },
+				where: { cus_id: idCustomer },
 			});
 
-			const updatedCustomer = await Customer.findByPk(customerId);
+			const updatedCustomer = await Customer.findByPk(idCustomer);
 			return updatedCustomer;
 		} catch (error) {
 			throw new Error(`Erro ao atualizar o cliente: ${error.message}`);

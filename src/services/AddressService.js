@@ -44,9 +44,20 @@ module.exports = {
 
 	createAddress: async (addressData) => {
 		try {
+			const { usr_id, usr_username, ...findAddressData } = addressData;
+
+			const address = await Address.findAll({
+				where: findAddressData,
+			});
+
+			if (address.length > 0) {
+				return address[0];
+			}
+
 			const newAddress = await Address.create(addressData);
 			return newAddress;
 		} catch (error) {
+			console.log(error);
 			throw new Error(`Erro ao criar o endereco: ${error.message}`);
 		}
 	},

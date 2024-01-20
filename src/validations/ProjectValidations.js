@@ -43,6 +43,7 @@ const ProjectValidations = {
 				postalCode: Joi.number(),
 				city: Joi.string(),
 				state: Joi.string(),
+				condominium: Joi.string(),
 			}),
 		}).required(),
 	}),
@@ -66,9 +67,11 @@ const ProjectValidations = {
 			observations: Joi.string().required(),
 		}).required(),
 	}),
+
 	createProjectCustomer: validate({
 		body: Joi.object({
-			idProject: Joi.number(),
+			idProject: Joi.number().required(),
+			idCustomer: Joi.number().required(),
 			name: Joi.string().required(),
 			birthdate: Joi.date(),
 			phone: Joi.string(),
