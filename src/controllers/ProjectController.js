@@ -12,11 +12,28 @@ const ProjectController = {
     }] */
 		try {
 			const { id } = req.params;
-			const project = await ProjectService.getProjectById(id);
+			let project = await ProjectService.getProjectById(id);
 
 			if (!project) {
 				return res.status(404).json({ message: "Obra não encontrada" });
 			}
+			const idAddress = project.add_id;
+
+			const address = await AddressService.getAddressById(idAddress);
+
+			project = {
+				...project.dataValues,
+				address: {
+					add_street: address.add_street,
+					add_number: address.add_number,
+					add_complement: address.add_complement,
+					add_neighborhood: address.add_neighborhood,
+					add_city: address.add_city,
+					add_state: address.add_state,
+					add_postal_code: address.add_postal_code,
+					add_observations1: address.add_observations1,
+				},
+			};
 			return res.status(200).json(project);
 		} catch (error) {
 			return res.status(500).json({ message: error.message });
@@ -55,7 +72,31 @@ const ProjectController = {
 					.status(404)
 					.json({ message: "Nao ha obras cadastradas no sistema" });
 			}
-			res.status(200).json(projects);
+
+			const projectsWithAddress = [];
+
+			for (const project of projects) {
+				let idAddress = project.add_id;
+				const address = await AddressService.getAddressById(idAddress);
+
+				const projectWithAddress = {
+					...project.dataValues,
+					address: {
+						add_street: address.add_street,
+						add_number: address.add_number,
+						add_complement: address.add_complement,
+						add_neighborhood: address.add_neighborhood,
+						add_city: address.add_city,
+						add_state: address.add_state,
+						add_postal_code: address.add_postal_code,
+						add_observations1: address.add_observations1,
+					},
+				};
+
+				projectsWithAddress.push(projectWithAddress);
+			}
+
+			res.status(200).json(projectsWithAddress);
 		} catch (error) {
 			res.status(500).json({ message: error.message });
 		}
@@ -76,6 +117,23 @@ const ProjectController = {
 					.status(404)
 					.json({ error: "Nao ha obras com este nome no sistema" });
 			}
+			const idAddress = project.add_id;
+
+			const address = await AddressService.getAddressById(idAddress);
+
+			project = {
+				...project.dataValues,
+				address: {
+					add_street: address.add_street,
+					add_number: address.add_number,
+					add_complement: address.add_complement,
+					add_neighborhood: address.add_neighborhood,
+					add_city: address.add_city,
+					add_state: address.add_state,
+					add_postal_code: address.add_postal_code,
+					add_observations1: address.add_observations1,
+				},
+			};
 			res.status(200).json(project);
 		} catch (error) {
 			res.status(500).json({ message: error.message });
@@ -120,8 +178,6 @@ const ProjectController = {
 				},
 			} = req.body;
 
-			const addressData = req.body.address;
-
 			const existingProject = await ProjectService.getProjectByName(
 				projectName
 			);
@@ -132,20 +188,20 @@ const ProjectController = {
 					.json({ message: "A obra já esta cadastrada no sistema" });
 			}
 
-			const newAddress = await AddressService.createAddress({
-				add_street: addressData.street,
-				add_number: addressData.number,
-				add_complement: addressData.complement,
-				add_neighborhood: addressData.neighborhood,
-				add_observations1: addressData.condominium,
-				add_city: addressData.city,
-				add_state: addressData.state,
-				add_postal_code: addressData.postalCode,
+			let newAddress = await AddressService.createAddress({
+				add_street: street,
+				add_number: number,
+				add_complement: complement,
+				add_neighborhood: neighborhood,
+				add_observations1: condominium,
+				add_city: city,
+				add_state: state,
+				add_postal_code: postalCode,
 				usr_id: user.id,
 				usr_username: user.username,
 			});
 
-			const newProject = await ProjectService.createProject({
+			let newProject = await ProjectService.createProject({
 				add_id: newAddress.add_id,
 				prj_name: projectName,
 				prj_start_date: startDate,
@@ -166,11 +222,23 @@ const ProjectController = {
 				usr_username: user.username,
 			});
 
-			const idProject = newProject.prj_id;
+			newProject = {
+				...newProject.dataValues,
+				address: {
+					add_street: newAddress.add_street,
+					add_number: newAddress.add_number,
+					add_complement: newAddress.add_complement,
+					add_neighborhood: newAddress.add_neighborhood,
+					add_city: newAddress.add_city,
+					add_state: newAddress.add_state,
+					add_postal_code: newAddress.add_postal_code,
+					add_observations1: newAddress.add_observations1,
+				},
+			};
 
 			res
 				.status(201)
-				.json({ message: "Obra cadastrada com sucesso!", idProject });
+				.json({ message: "Obra cadastrada com sucesso!", newProject });
 		} catch (error) {
 			res.status(500).json({ message: error.message });
 		}
@@ -187,7 +255,7 @@ const ProjectController = {
 			const user = await UserService.getUserInToken(token);
 
 			const {
-				id,
+				idProject,
 				projectName,
 				startDate,
 				endDate,
@@ -203,15 +271,40 @@ const ProjectController = {
 				contractValue,
 				contractType,
 				observations,
+				address: {
+					street,
+					number,
+					complement,
+					neighborhood,
+					postalCode,
+					city,
+					state,
+					condominium,
+				},
 			} = req.body;
 
-			const existingProject = await ProjectService.getProjectById(id);
+			const existingProject = await ProjectService.getProjectById(idProject);
 
 			if (!existingProject) {
 				return res.status(404).json({ message: "Obra não encontrada" });
 			}
 
-			const updatedProject = await ProjectService.updateProjectById(id, {
+			const idAddress = existingProject.add_id;
+
+			let updatedAddress = await AddressService.updateAddressById(idAddress, {
+				add_street: street,
+				add_number: number,
+				add_complement: complement,
+				add_neighborhood: neighborhood,
+				add_observations1: condominium,
+				add_city: city,
+				add_state: state,
+				add_postal_code: postalCode,
+				usr_id: user.id,
+				usr_username: user.username,
+			});
+
+			let updatedProject = await ProjectService.updateProjectById(idProject, {
 				prj_name: projectName,
 				prj_start_date: startDate,
 				prj_end_date: endDate,
@@ -230,6 +323,20 @@ const ProjectController = {
 				usr_id: user.id,
 				usr_username: user.username,
 			});
+
+			updatedProject = {
+				...updatedProject.dataValues,
+				address: {
+					add_street: updatedAddress.add_street,
+					add_number: updatedAddress.add_number,
+					add_complement: updatedAddress.add_complement,
+					add_neighborhood: updatedAddress.add_neighborhood,
+					add_city: updatedAddress.add_city,
+					add_state: updatedAddress.add_state,
+					add_postal_code: updatedAddress.add_postal_code,
+					add_observations1: updatedAddress.add_observations1,
+				},
+			};
 
 			res
 				.status(200)
@@ -269,7 +376,6 @@ const ProjectController = {
 			const user = await UserService.getUserInToken(token);
 			const {
 				idProject,
-				idCustomer,
 				name,
 				birthdate,
 				phone,
@@ -280,28 +386,81 @@ const ProjectController = {
 				notes,
 			} = req.body;
 
-			let IdCustomerProject = idCustomer;
+			const existsCustomer = await CustomerService.validadeExistsCustomer({
+				cus_name: name,
+				cus_birthdate: birthdate,
+				cus_phone: phone,
+				cus_email: email,
+				cus_type: type,
+				cus_cpf: cpf,
+				cus_cnpj: cnpj,
+				cus_notes: notes,
+				usr_id: user.id,
+				usr_username: user.username,
+			});
 
-			if (idCustomer == 0) {
-				const newCustomer = await CustomerService.createCustomer({
-					cus_name: name,
-					cus_birthdate: birthdate,
-					cus_phone: phone,
-					cus_email: email,
-					cus_type: type,
-					cus_cpf: cpf,
-					cus_cnpj: cnpj,
-					cus_notes: notes,
-					usr_id: user.id,
-					usr_username: user.username,
+			if (existsCustomer) {
+				return res.status(400).json({
+					message: "Este cliente ja foi cadastrado anteriormente!",
 				});
-
-				IdCustomerProject = newCustomer.cus_id;
 			}
+
+			const newCustomer = await CustomerService.createCustomer({
+				cus_name: name,
+				cus_birthdate: birthdate,
+				cus_phone: phone,
+				cus_email: email,
+				cus_type: type,
+				cus_cpf: cpf,
+				cus_cnpj: cnpj,
+				cus_notes: notes,
+				usr_id: user.id,
+				usr_username: user.username,
+			});
+
+			const IdCustomerProject = newCustomer.cus_id;
 
 			await ProjectService.setProjectCustomer(idProject, IdCustomerProject);
 
 			res.status(201).json({ message: "Cliente cadastrado com sucesso!" });
+		} catch (error) {
+			res.status(500).json({ message: error.message });
+		}
+	},
+
+	updateProjectCustomer: async (req, res) => {
+		// #swagger.tags = ['Projects']
+		// #swagger.description = 'Endpoint para incluir um cliente existente em uma obra'
+		/* #swagger.security = [{
+        "bearerAuth": []
+    }] */
+		try {
+			const token = req.headers.authorization?.split(" ")[1];
+			const user = await UserService.getUserInToken(token);
+
+			const { idProject, idCustomer } = req.body;
+
+			const checkProject = await ProjectService.getProjectById(idProject);
+
+			if (!checkProject) {
+				return res.status(404).json({ message: "Obra não encontrada" });
+			}
+
+			const checkCustomer = await CustomerService.getCustomerById(idCustomer);
+
+			if (!checkCustomer) {
+				return res.status(404).json({ message: "Cliente não encontrado" });
+			}
+
+			const updatedProject = await ProjectService.updateProjectById(idProject, {
+				cus_id: idCustomer,
+				usr_id: user.id,
+				usr_username: user.username,
+			});
+
+			res
+				.status(200)
+				.json({ message: "Obra atualizada com sucesso!", updatedProject });
 		} catch (error) {
 			res.status(500).json({ message: error.message });
 		}
