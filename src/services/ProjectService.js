@@ -61,12 +61,6 @@ module.exports = {
 
 	updateProjectById: async (projectId, updatedProjectData) => {
 		try {
-			const checkProject = await Project.findByPk(projectId);
-
-			if (!checkProject) {
-				throw new Error("Obra não encontrada");
-			}
-
 			await Project.update(updatedProjectData, {
 				where: { prj_id: projectId },
 			});
