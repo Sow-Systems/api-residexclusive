@@ -26,6 +26,19 @@ const UserValidations = {
 		},
 		options
 	),
+	updateUser: validate(
+		{
+			body: Joi.object({
+				idUser: Joi.number().required(),
+				username: Joi.string().required(),
+				name: Joi.string().required(),
+				email: Joi.string().email().required(),
+				password: Joi.string().required(),
+				birthdate: Joi.date().required(),
+			}),
+		},
+		options
+	),
 	getUser: validate(
 		{
 			params: Joi.object({
