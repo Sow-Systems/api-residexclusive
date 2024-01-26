@@ -96,6 +96,36 @@ const UserController = {
 			});
 		}
 	},
+	updateUser: async (req, res) => {
+		// #swagger.tags = ['Users']
+		// #swagger.description = 'Endpoint para atualizar o cadastro de um usuário'
+		/* #swagger.security = [{
+            "bearerAuth": []
+    }] */
+		try {
+			const { idUser, username, name, email, password, birthdate } = req.body;
+			const checkUser = await UserService.getUserById(idUser);
+			if (!checkUser.lenght) {
+				return res.status(404).json({ error: "Usuario não encontrado" });
+			}
+
+			const updatedUser = await UserService.updateUser(
+				idUser,
+				username,
+				name,
+				email,
+				password,
+				birthdate
+			);
+			res
+				.status(201)
+				.json({ message: "Usuario atualizado: Id: " + updatedUser.dataValues });
+		} catch (error) {
+			return res.status(500).json({
+				message: "Erro ao atualizar o cadastro do usuario no sistema",
+			});
+		}
+	},
 };
 
 module.exports = UserController;

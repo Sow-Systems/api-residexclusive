@@ -57,17 +57,6 @@ const Address = db.define(
 			type: DataTypes.STRING(45),
 			allowNull: true,
 		},
-		created_at: {
-			type: DataTypes.DATE,
-			allowNull: true,
-			defaultValue: DataTypes.NOW,
-		},
-		updated_at: {
-			type: DataTypes.DATE,
-			allowNull: true,
-			defaultValue: DataTypes.NOW,
-			onUpdate: DataTypes.NOW,
-		},
 	},
 	{
 		tableName: "address",

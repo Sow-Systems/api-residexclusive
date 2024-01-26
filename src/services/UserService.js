@@ -50,6 +50,31 @@ module.exports = {
 		}
 	},
 
+	updateUser: async (idUser, username, name, email, password, birthdate) => {
+		try {
+			const hashedPassword = await bcrypt.hash(password, 10);
+
+			await Project.update(updatedProjectData, {
+				where: { prj_id: projectId },
+			});
+
+			const newUser = await User.update(
+				{
+					usr_username: username,
+					usr_name: name,
+					usr_email: email,
+					usr_password: hashedPassword,
+					usr_birthdate: birthdate,
+					usr_admin: 0,
+				},
+				{ where: { usr_id: idUser } }
+			);
+			return newUser;
+		} catch (error) {
+			throw new Error(`Erro ao criar usuário: ${error}`);
+		}
+	},
+
 	getUserById: async (id) => {
 		try {
 			const user = await User.findByPk(id);

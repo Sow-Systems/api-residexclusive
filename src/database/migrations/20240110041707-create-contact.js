@@ -2,23 +2,27 @@
 
 module.exports = {
 	up: async (queryInterface, Sequelize) => {
-		await queryInterface.createTable("customer_contact", {
+		await queryInterface.createTable("contact", {
 			cct_id: {
 				type: Sequelize.INTEGER,
 				allowNull: false,
 				autoIncrement: true,
 				primaryKey: true,
 			},
-			cus_id: {
-				type: Sequelize.INTEGER,
-				allowNull: false,
-			},
-			cnt_id: {
-				type: Sequelize.INTEGER,
-				allowNull: false,
-			},
-			cct_description: {
+			cct_name: {
 				type: Sequelize.STRING,
+				allowNull: true,
+			},
+			cct_phone: {
+				type: Sequelize.STRING,
+				allowNull: true,
+			},
+			cct_email: {
+				type: Sequelize.STRING,
+				allowNull: true,
+			},
+			cct_birthdate: {
+				type: Sequelize.DATEONLY,
 				allowNull: true,
 			},
 			usr_id: {
@@ -45,6 +49,6 @@ module.exports = {
 	},
 
 	down: async (queryInterface, Sequelize) => {
-		await queryInterface.dropTable("customer_contact");
+		await queryInterface.dropTable("contact");
 	},
 };

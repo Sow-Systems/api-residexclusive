@@ -1,6 +1,7 @@
 const { DataTypes } = require("sequelize");
 const db = require("../database");
 const Customer = require("./CustomerModel");
+const Contact = require("./ContactModel");
 
 const CustomerContact = db.define(
 	"CustomerContact",
@@ -47,7 +48,13 @@ const CustomerContact = db.define(
 	}
 );
 
-Customer.hasMany(CustomerContact, { foreignKey: "cus_id" });
-CustomerContact.belongsTo(Customer, { foreignKey: "cus_id" });
+Customer.belongsToMany(Contact, {
+	through: CustomerContact,
+	foreignKey: "cus_id",
+});
+Contact.belongsToMany(Customer, {
+	through: CustomerContact,
+	foreignKey: "cct_id",
+});
 
 module.exports = CustomerContact;

@@ -24,15 +24,20 @@ module.exports = {
 		}
 	},
 
-	createCustomer: async (customerData) => {
+	validateExistsCustomer: async (customerData) => {
 		try {
 			const { usr_id, usr_username, ...findCustomerData } = customerData;
-
 			const customer = await Customer.findAll({ where: findCustomerData });
+			return customer[0];
+		} catch (error) {
+			throw new Error(
+				`Erro ao obter os clientes no banco de dados: ${error.message}`
+			);
+		}
+	},
 
-			if (customer.length > 0) {
-				return customer[0];
-			}
+	createCustomer: async (customerData) => {
+		try {
 			const newCustomer = await Customer.create(customerData);
 			return newCustomer;
 		} catch (error) {
