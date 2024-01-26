@@ -30,6 +30,8 @@ router.put(
 
 router.get("/project-customers", ProjectController.getAllCustomers);
 router.post("/project-customer", ProjectController.createProjectCustomer);
+router.put("/project-customer", ProjectController.updateProjectCustomer);
+
 // router.put("/project/customer", auth, ProjectController.createProjectCustomer);
 // router.delete("/project/customer", auth, ProjectController.deleteProjectCustomer);
 
