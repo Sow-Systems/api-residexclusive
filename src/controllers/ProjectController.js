@@ -111,7 +111,7 @@ const ProjectController = {
 		const { name } = req.params;
 
 		try {
-			const project = await ProjectService.getProjectByName(name);
+			let project = await ProjectService.getProjectByName(name);
 			if (!project) {
 				return res
 					.status(404)
