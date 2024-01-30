@@ -17,21 +17,43 @@ const ProjectController = {
 			if (!project) {
 				return res.status(404).json({ message: "Obra não encontrada" });
 			}
-			const idAddress = project.add_id;
 
-			const address = await AddressService.getAddressById(idAddress);
+			let addressData = {};
+
+			if (project.add_id) {
+				let idAddress = project.add_id;
+				addressData = await AddressService.getAddressById(idAddress);
+			}
+
+			let customerData = {};
+
+			if (project.cus_id) {
+				let idCustomer = project.cus_id;
+				customerData = await CustomerService.getCustomerById(idCustomer);
+			}
 
 			project = {
 				...project.dataValues,
 				address: {
-					add_street: address.add_street,
-					add_number: address.add_number,
-					add_complement: address.add_complement,
-					add_neighborhood: address.add_neighborhood,
-					add_city: address.add_city,
-					add_state: address.add_state,
-					add_postal_code: address.add_postal_code,
-					add_observations1: address.add_observations1,
+					add_street: addressData.add_street,
+					add_number: addressData.add_number,
+					add_complement: addressData.add_complement,
+					add_neighborhood: addressData.add_neighborhood,
+					add_city: addressData.add_city,
+					add_state: addressData.add_state,
+					add_postal_code: addressData.add_postal_code,
+					add_observations1: addressData.add_observations1,
+				},
+				customer: {
+					cus_id: customerData.cus_id,
+					cus_name: customerData.cus_name,
+					cus_birthdate: customerData.cus_birthdate,
+					cus_phone: customerData.cus_phone,
+					cus_email: customerData.cus_email,
+					cus_type: customerData.cus_type,
+					cus_cpf: customerData.cus_cpf,
+					cus_cnpj: customerData.cus_cnpj,
+					cus_notes: customerData.cus_cnpj,
 				},
 			};
 			return res.status(200).json(project);
