@@ -400,7 +400,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "id": {
+                  "idProject": {
                     "type": "number",
                     "example": 1
                   },

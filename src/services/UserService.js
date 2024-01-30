@@ -54,11 +54,7 @@ module.exports = {
 		try {
 			const hashedPassword = await bcrypt.hash(password, 10);
 
-			await Project.update(updatedProjectData, {
-				where: { prj_id: projectId },
-			});
-
-			const newUser = await User.update(
+			const updatedUser = await User.update(
 				{
 					usr_username: username,
 					usr_name: name,
@@ -69,9 +65,9 @@ module.exports = {
 				},
 				{ where: { usr_id: idUser } }
 			);
-			return newUser;
+			return updatedUser;
 		} catch (error) {
-			throw new Error(`Erro ao criar usuário: ${error}`);
+			throw new Error(`Erro ao atualizar o usuário: ${error}`);
 		}
 	},
 

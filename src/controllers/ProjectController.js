@@ -111,7 +111,7 @@ const ProjectController = {
 		const { name } = req.params;
 
 		try {
-			const project = await ProjectService.getProjectByName(name);
+			let project = await ProjectService.getProjectByName(name);
 			if (!project) {
 				return res
 					.status(404)
@@ -386,7 +386,7 @@ const ProjectController = {
 				notes,
 			} = req.body;
 
-			const existsCustomer = await CustomerService.validadeExistsCustomer({
+			const existsCustomer = await CustomerService.validateExistsCustomer({
 				cus_name: name,
 				cus_birthdate: birthdate,
 				cus_phone: phone,

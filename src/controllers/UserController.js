@@ -72,7 +72,7 @@ const UserController = {
 			if (checkUsername) {
 				return res
 					.status(409)
-					.json({ error: "Usuario ja cadastrado no sistema" });
+					.json({ message: "Usuario ja cadastrado no sistema" });
 			}
 
 			if (checkEmail) {
@@ -105,11 +105,11 @@ const UserController = {
 		try {
 			const { idUser, username, name, email, password, birthdate } = req.body;
 			const checkUser = await UserService.getUserById(idUser);
-			if (!checkUser.lenght) {
-				return res.status(404).json({ error: "Usuario não encontrado" });
+			if (!checkUser) {
+				return res.status(404).json({ message: "Usuario não encontrado" });
 			}
 
-			const updatedUser = await UserService.updateUser(
+			await UserService.updateUser(
 				idUser,
 				username,
 				name,
@@ -117,9 +117,7 @@ const UserController = {
 				password,
 				birthdate
 			);
-			res
-				.status(201)
-				.json({ message: "Usuario atualizado: Id: " + updatedUser.dataValues });
+			res.status(201).json({ message: "Usuario atualizado" });
 		} catch (error) {
 			return res.status(500).json({
 				message: "Erro ao atualizar o cadastro do usuario no sistema",
