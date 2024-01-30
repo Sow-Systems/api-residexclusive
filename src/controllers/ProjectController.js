@@ -386,7 +386,7 @@ const ProjectController = {
 				notes,
 			} = req.body;
 
-			const existsCustomer = await CustomerService.validadeExistsCustomer({
+			const existsCustomer = await CustomerService.validateExistsCustomer({
 				cus_name: name,
 				cus_birthdate: birthdate,
 				cus_phone: phone,
