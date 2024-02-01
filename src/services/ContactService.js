@@ -1,83 +1,53 @@
-const Address = require("../models/AddressModel");
+const { Contact } = require("../models");
 
 module.exports = {
-	getAddressById: async (id) => {
+	getContactById: async (contactId) => {
 		try {
-			const address = await Address.findByPk(id);
-			return address;
+			const contact = await Contact.findByPk(contactId);
+			return contact;
 		} catch (error) {
 			throw new Error(
-				`Erro ao obter o endereco no banco de dados: ${error.message}`
+				`Erro ao obter o contato no banco de dados: ${error.message}`
 			);
 		}
 	},
 
-	getAddressbyStreet: async (street) => {
+	createContact: async (contactData) => {
 		try {
-			if (!street) {
-				throw new Error("Nome do logradouro não especificado.");
-			}
-			const address = await Address.findOne({ where: { add_street: street } });
-			return address;
-		} catch (error) {
-			throw new Error(
-				`Erro ao obter o logradouro no banco de dados: ${error.message}`
-			);
-		}
-	},
+			const { usr_id, usr_username, ...findContactData } = contactData;
 
-	getAddressbyPostalCode: async (postalCode) => {
-		try {
-			if (!street) {
-				throw new Error("Nome do logradouro não especificado.");
-			}
-			const address = await Address.findOne({
-				where: { add_postal_code: postalCode },
-			});
-			return address;
-		} catch (error) {
-			throw new Error(
-				`Erro ao obter o logradouro no banco de dados: ${error.message}`
-			);
-		}
-	},
-
-	createAddress: async (addressData) => {
-		try {
-			const { usr_id, usr_username, ...findAddressData } = addressData;
-
-			const address = await Address.findAll({
-				where: findAddressData,
+			const contact = await Contact.findAll({
+				where: findContactData,
 			});
 
-			if (address.length > 0) {
-				return address[0];
+			if (contact.length > 0) {
+				return contact[0];
 			}
 
-			const newAddress = await Address.create(addressData);
-			return newAddress;
+			const newContact = await Contact.create(contactData);
+			return newContact;
 		} catch (error) {
 			console.log(error);
-			throw new Error(`Erro ao criar o endereco: ${error.message}`);
+			throw new Error(`Erro ao criar o contato: ${error.message}`);
 		}
 	},
 
-	updateAddressById: async (addressId, updatedAddressData) => {
+	updateContactById: async (contactId, updatedContactData) => {
 		try {
-			const existingAddress = await Address.findByPk(addressId);
+			const existsContact = await Contact.findByPk(contactId);
 
-			if (!existingAddress) {
-				throw new Error("Endereco não encontrada");
+			if (!existsContact) {
+				throw new Error("Contato não encontrada");
 			}
 
-			await Address.update(updatedAddressData, {
-				where: { add_id: addressId },
+			await Contact.update(updatedContactData, {
+				where: { ctt_id: contactId },
 			});
 
-			const updatedAddress = await Address.findByPk(addressId);
-			return updatedAddress;
+			const updatedContact = await Contact.findByPk(contactId);
+			return updatedContact;
 		} catch (error) {
-			throw new Error(`Erro ao atualizar o endereco: ${error.message}`);
+			throw new Error(`Erro ao atualizar o contato: ${error.message}`);
 		}
 	},
 };

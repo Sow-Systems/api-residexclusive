@@ -96,14 +96,4 @@ const Project = db.define(
 	}
 );
 
-Project.belongsTo(Address, {
-	foreignKey: "add_id",
-	as: "address",
-});
-
-Project.belongsTo(Customer, {
-	foreignKey: "cus_id",
-	as: "customer",
-});
-
 module.exports = Project;

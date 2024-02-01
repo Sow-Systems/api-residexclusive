@@ -19,15 +19,7 @@ const Stage = db.define(
 			allowNull: true,
 		},
 		usr_username: {
-			type: DataTypes.STRING(45),
-			allowNull: true,
-		},
-		created_at: {
-			type: DataTypes.TIMESTAMP,
-			allowNull: true,
-		},
-		updated_at: {
-			type: DataTypes.TIMESTAMP,
+			type: DataTypes.STRING,
 			allowNull: true,
 		},
 	},

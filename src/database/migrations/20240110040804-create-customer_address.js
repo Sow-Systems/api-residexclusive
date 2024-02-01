@@ -15,11 +15,13 @@ module.exports = {
 			},
 			cus_id: {
 				type: Sequelize.INTEGER,
-				allowNull: false,
+				allowNull: true,
+				references: { model: "customer", key: "cus_id" },
 			},
 			add_id: {
 				type: Sequelize.INTEGER,
-				allowNull: false,
+				allowNull: true,
+				references: { model: "address", key: "add_id" },
 			},
 			usr_id: {
 				type: Sequelize.INTEGER,

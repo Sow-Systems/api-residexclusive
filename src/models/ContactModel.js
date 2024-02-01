@@ -1,25 +1,30 @@
 const { DataTypes } = require("sequelize");
 const db = require("../database");
+const CustomerContact = require("./CustomerContactModel");
+const Customer = require("./CustomerModel");
 
 const Contact = db.define(
 	"Contact",
 	{
-		cct_id: {
+		ctt_id: {
 			type: DataTypes.INTEGER,
-			allowNull: false,
 			autoIncrement: true,
 			primaryKey: true,
 		},
-		cus_id: {
-			type: DataTypes.INTEGER,
-			allowNull: false,
-		},
-		cnt_id: {
-			type: DataTypes.INTEGER,
-			allowNull: false,
-		},
-		cct_description: {
+		ctt_name: {
 			type: DataTypes.STRING,
+			allowNull: true,
+		},
+		ctt_phone: {
+			type: DataTypes.STRING,
+			allowNull: true,
+		},
+		ctt_email: {
+			type: DataTypes.STRING,
+			allowNull: true,
+		},
+		ctt_birthdate: {
+			type: DataTypes.DATEONLY,
 			allowNull: true,
 		},
 		usr_id: {

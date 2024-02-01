@@ -1,4 +1,4 @@
-const Address = require("../models/AddressModel");
+const { Address } = require("../models");
 
 module.exports = {
 	getAddressById: async (id) => {

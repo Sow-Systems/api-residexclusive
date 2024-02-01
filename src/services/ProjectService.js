@@ -1,6 +1,6 @@
-const Project = require("../models/ProjectModel");
-const Customer = require("../models/CustomerModel");
-const VwProjectInfo = require("../models/VwProjectInfoModel");
+const { Project } = require("../models");
+const { Customer } = require("../models");
+const { VwProjectInfo } = require("../models");
 
 module.exports = {
 	getAllProjects: async () => {

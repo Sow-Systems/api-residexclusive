@@ -1,3 +1,4 @@
+const ContactService = require("../services/ContactService");
 const AddressService = require("../services/AddressService");
 const ProjectService = require("../services/ProjectService");
 const UserService = require("../services/UserService");
@@ -25,36 +26,36 @@ const ProjectController = {
 				addressData = await AddressService.getAddressById(idAddress);
 			}
 
-			let customerData = {};
-
+			let customerResponse = {};
 			if (project.cus_id) {
 				let idCustomer = project.cus_id;
-				customerData = await CustomerService.getCustomerById(idCustomer);
+				let customerData = await CustomerService.getCustomerById(idCustomer);
+
+				if (customerData) {
+					customerResponse = {
+						...customerData.dataValues,
+					};
+					let contactsData = await CustomerService.getCustomerContacts(
+						idCustomer
+					);
+					let addressesData = await CustomerService.getCustomerAddresses(
+						idCustomer
+					);
+
+					customerResponse = {
+						...customerResponse,
+						contacts: contactsData,
+						addresses: addressesData,
+					};
+				} else {
+					customerResponse = {};
+				}
 			}
 
 			project = {
 				...project.dataValues,
-				address: {
-					add_street: addressData.add_street,
-					add_number: addressData.add_number,
-					add_complement: addressData.add_complement,
-					add_neighborhood: addressData.add_neighborhood,
-					add_city: addressData.add_city,
-					add_state: addressData.add_state,
-					add_postal_code: addressData.add_postal_code,
-					add_observations1: addressData.add_observations1,
-				},
-				customer: {
-					cus_id: customerData.cus_id,
-					cus_name: customerData.cus_name,
-					cus_birthdate: customerData.cus_birthdate,
-					cus_phone: customerData.cus_phone,
-					cus_email: customerData.cus_email,
-					cus_type: customerData.cus_type,
-					cus_cpf: customerData.cus_cpf,
-					cus_cnpj: customerData.cus_cnpj,
-					cus_notes: customerData.cus_cnpj,
-				},
+				address: addressData,
+				customer: customerResponse,
 			};
 			return res.status(200).json(project);
 		} catch (error) {
