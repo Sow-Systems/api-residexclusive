@@ -8,25 +8,26 @@ const CustomerContact = db.define(
 	{
 		cct_id: {
 			type: DataTypes.INTEGER,
-			allowNull: false,
 			autoIncrement: true,
 			primaryKey: true,
 		},
-		cct_name: {
-			type: DataTypes.STRING,
-			allowNull: true,
+		cus_id: {
+			type: DataTypes.INTEGER,
+			allowNull: false,
+			foreignkey: true,
+			references: {
+				model: Customer,
+				key: "cus_id",
+			},
 		},
-		cct_birthdate: {
-			type: DataTypes.DATEONLY,
-			allowNull: true,
-		},
-		cct_phone: {
-			type: DataTypes.STRING,
-			allowNull: true,
-		},
-		cct_email: {
-			type: DataTypes.STRING,
-			allowNull: true,
+		ctt_id: {
+			type: DataTypes.INTEGER,
+			allowNull: false,
+			foreignkey: true,
+			references: {
+				model: Contact,
+				key: "ctt_id",
+			},
 		},
 		cct_description: {
 			type: DataTypes.STRING,
@@ -47,14 +48,5 @@ const CustomerContact = db.define(
 		underscored: true,
 	}
 );
-
-Customer.belongsToMany(Contact, {
-	through: CustomerContact,
-	foreignKey: "cus_id",
-});
-Contact.belongsToMany(Customer, {
-	through: CustomerContact,
-	foreignKey: "cct_id",
-});
 
 module.exports = CustomerContact;

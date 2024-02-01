@@ -1,6 +1,7 @@
 const { DataTypes } = require("sequelize");
 const db = require("../database");
-const Address = require("./AddressModel");
+const CustomerContact = require("./CustomerContactModel");
+const Contact = require("./ContactModel");
 
 const Customer = db.define(
 	"Customer",

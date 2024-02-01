@@ -11,11 +11,13 @@ module.exports = {
 			},
 			cus_id: {
 				type: Sequelize.INTEGER,
-				allowNull: false,
+				references: { model: "customer", key: "cus_id" },
+				allowNull: true,
 			},
-			cnt_id: {
+			ctt_id: {
 				type: Sequelize.INTEGER,
-				allowNull: false,
+				references: { model: "contact", key: "ctt_id" },
+				allowNull: true,
 			},
 			cct_description: {
 				type: Sequelize.STRING,

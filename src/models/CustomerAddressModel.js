@@ -16,6 +16,18 @@ const CustomerAddress = db.define(
 			type: DataTypes.STRING,
 			allowNull: true,
 		},
+		cus_id: {
+			type: DataTypes.INTEGER,
+			allowNull: true,
+			foreignkey: true,
+			references: { model: "customer", key: "cus_id" },
+		},
+		add_id: {
+			type: DataTypes.INTEGER,
+			allowNull: true,
+			foreignkey: true,
+			references: { model: "address", key: "add_id" },
+		},
 		usr_id: {
 			type: DataTypes.INTEGER,
 			allowNull: true,
@@ -31,14 +43,5 @@ const CustomerAddress = db.define(
 		underscored: true,
 	}
 );
-
-Customer.belongsToMany(Address, {
-	through: CustomerAddress,
-	foreignKey: "cus_id",
-});
-Address.belongsToMany(Customer, {
-	through: CustomerAddress,
-	foreignKey: "add_id",
-});
 
 module.exports = CustomerAddress;

@@ -1,5 +1,11 @@
-const Customer = require("../models/CustomerModel");
-const CustomerAddress = require("../models/CustomerAddress");
+const {
+	Customer,
+	Address,
+	Contact,
+	CustomerAddress,
+	CustomerContact,
+} = require("../models");
+const AddressService = require("./AddressService");
 
 module.exports = {
 	getAllCustomers: async () => {
@@ -45,6 +51,25 @@ module.exports = {
 		}
 	},
 
+	updateCustomerById: async (idCustomer, updatedCustomerData) => {
+		try {
+			const existingCustomer = await Customer.findByPk(idCustomer);
+
+			if (!existingCustomer) {
+				throw new Error("Cliente não encontrado");
+			}
+
+			await Customer.update(updatedCustomerData, {
+				where: { cus_id: idCustomer },
+			});
+
+			const updatedCustomer = await Customer.findByPk(idCustomer);
+			return updatedCustomer;
+		} catch (error) {
+			throw new Error(`Erro ao atualizar o cliente: ${error.message}`);
+		}
+	},
+
 	createCustomerAddress: async (customerAddressData) => {
 		try {
 			const { usr_id, usr_username, ...findCustomerAddressData } =
@@ -67,22 +92,54 @@ module.exports = {
 		}
 	},
 
-	updateCustomerById: async (idCustomer, updatedCustomerData) => {
+	createCustomerContact: async (customerContactData) => {
 		try {
-			const existingCustomer = await Customer.findByPk(idCustomer);
+			const { usr_id, usr_username, ...findCustomerContactData } =
+				customerContactData;
 
-			if (!existingCustomer) {
-				throw new Error("Cliente não encontrado");
-			}
-
-			await Customer.update(updatedCustomerData, {
-				where: { cus_id: idCustomer },
+			const customerContact = await CustomerContact.findAll({
+				where: findCustomerContactData,
 			});
-
-			const updatedCustomer = await Customer.findByPk(idCustomer);
-			return updatedCustomer;
+			if (customerContact.length > 0) {
+				return null;
+			}
+			const newCustomerContact = await CustomerContact.create(
+				customerContactData
+			);
+			return newCustomerContact;
 		} catch (error) {
-			throw new Error(`Erro ao atualizar o cliente: ${error.message}`);
+			throw new Error(
+				`Erro ao inserir o contato no cadastro do cliente: ${error.message}`
+			);
+		}
+	},
+
+	getCustomerContacts: async (idCustomer) => {
+		try {
+			const contacts = await Contact.findAll({
+				include: [
+					{ model: Customer, attributes: [], where: { cus_id: idCustomer } },
+				],
+			});
+			return contacts;
+		} catch (error) {
+			throw new Error(
+				`Erro ao obter os contatos do cliente no banco de dados: ${error.message}`
+			);
+		}
+	},
+
+	getCustomerAddresses: async (idCustomer) => {
+		try {
+			const addresses = await Address.findAll({
+				include: [
+					{ model: Customer, attributes: [], where: { cus_id: idCustomer } },
+				],
+			});
+			return addresses;
+		} catch (error) {
+			throw new Error(`
+			Erro ao obter os enderecos do cliente no banco de dados: ${error.message}`);
 		}
 	},
 };

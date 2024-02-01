@@ -11,4 +11,10 @@ router.post(
 	CustomerValidations.createCustomerAddress,
 	CustomerController.createCustomerAddress
 );
+
+router.post(
+	"/customer-contact",
+	//CustomerValidations.createCustomerContact,
+	CustomerController.createCustomerContact
+);
 module.exports = router;

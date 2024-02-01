@@ -3,25 +3,25 @@
 module.exports = {
 	up: async (queryInterface, Sequelize) => {
 		await queryInterface.createTable("contact", {
-			cct_id: {
+			ctt_id: {
 				type: Sequelize.INTEGER,
 				allowNull: false,
 				autoIncrement: true,
 				primaryKey: true,
 			},
-			cct_name: {
+			ctt_name: {
 				type: Sequelize.STRING,
 				allowNull: true,
 			},
-			cct_phone: {
+			ctt_phone: {
 				type: Sequelize.STRING,
 				allowNull: true,
 			},
-			cct_email: {
+			ctt_email: {
 				type: Sequelize.STRING,
 				allowNull: true,
 			},
-			cct_birthdate: {
+			ctt_birthdate: {
 				type: Sequelize.DATEONLY,
 				allowNull: true,
 			},
