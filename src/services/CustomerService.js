@@ -136,6 +136,7 @@ module.exports = {
 					{ model: Customer, attributes: [], where: { cus_id: idCustomer } },
 				],
 			});
+
 			return addresses;
 		} catch (error) {
 			throw new Error(`
