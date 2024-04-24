@@ -12,12 +12,12 @@ const UserController = {
 			}
 			const user = await UserService.getUserByUsername(username);
 
-			if (!user) {
-				return res.status(404).send({ message: "Usuário não encontrado" });
-			}
+			// if (!user) {
+			// 	return res.status(404).send({ message: "Usuário não encontrado" });
+			// }
 
-			if (!UserService.checkPassword(password, user.usr_password)) {
-				return res.status(401).send({ message: "Credenciais inválidas" });
+			if (!user || !UserService.checkPassword(password, user.usr_password)) {
+				return res.status(404).send({ message: "Credenciais inválidas" });
 			}
 			let token = UserService.getToken(user.usr_id, username);
 			return res.status(200).json({ token });
